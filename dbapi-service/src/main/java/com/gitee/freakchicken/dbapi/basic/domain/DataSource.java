@@ -1,9 +1,13 @@
 package com.gitee.freakchicken.dbapi.basic.domain;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gitee.freakchicken.dbapi.basic.util.Constants;
 import lombok.Data;
+
 
 import java.io.Serializable;
 
@@ -27,28 +31,10 @@ public class DataSource implements Serializable {
     String note;
 
     @TableField
-    String url;
-
-    @TableField
-    String username;
-
-    @TableField
-    String password;
-
-    /**
-     * true 修改密码 false不修改
-     */
-    @TableField(exist = false)
-    boolean edit_password;
-
-    @TableField
     String type;
 
     @TableField
-    String driver;
-
-    @TableField(value = "table_sql")
-    String tableSql;
+    String detail;
 
     @TableField("create_user_id")
     Integer createUserId;
@@ -58,5 +44,16 @@ public class DataSource implements Serializable {
 
     @TableField(value = "update_time")
     String updateTime;
+
+    @JsonIgnore
+    public boolean isJdbcType(){
+        return Constants.DATASOURCE_TYPE_JDBC.equals(this.type);
+    }
+
+    @JsonIgnore
+    public JdbcDataSource getJdbcDataSource() {
+        JdbcDataSource jdbcDataSource = JSON.parseObject(detail, JdbcDataSource.class);
+        return jdbcDataSource;
+    }
 
 }

@@ -7,6 +7,7 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.gitee.freakchicken.dbapi.basic.dao.ApiConfigMapper;
 import com.gitee.freakchicken.dbapi.basic.dao.DataSourceMapper;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
+import com.gitee.freakchicken.dbapi.basic.util.Constants;
 import com.gitee.freakchicken.dbapi.basic.util.DESUtils;
 import com.gitee.freakchicken.dbapi.basic.util.PoolManager;
 import com.gitee.freakchicken.dbapi.basic.util.UUIDUtil;
@@ -49,13 +50,6 @@ public class DataSourceService {
         dataSource.setId(UUIDUtil.id());
         dataSource.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         dataSource.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-
-        // 新增数据源对密码加密
-        try {
-            dataSource.setPassword(DESUtils.encrypt(dataSource.getPassword()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         dataSourceMapper.insert(dataSource);
     }
 
@@ -63,18 +57,11 @@ public class DataSourceService {
     @Transactional
     public void update(DataSource dataSource) {
         dataSource.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        // 如果修改了密码, 需要对密码加密
-        if (dataSource.isEdit_password()) {
-            try {
-                dataSource.setPassword(DESUtils.encrypt(dataSource.getPassword()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         dataSourceMapper.updateById(dataSource);
-        PoolManager.removeJdbcConnectionPool(dataSource.getId());
+        if (dataSource.isJdbcType()){
+            PoolManager.removeJdbcConnectionPool(dataSource.getId());
+        }
         cacheManager.getCache("datasource").evictIfPresent(dataSource.getId());
-
     }
 
     /**
@@ -98,6 +85,7 @@ public class DataSourceService {
         }).map(item -> item.getName() + "(" + item.getId() + ")").collect(Collectors.toList());
 
         if (str.size() == 0) {
+
             dataSourceMapper.deleteById(id);
 
             PoolManager.removeJdbcConnectionPool(id);
@@ -122,10 +110,6 @@ public class DataSourceService {
         return collect;
     }
 
-    public String getDBType(Integer id) {
-        return dataSourceMapper.selectById(id).getType();
-    }
-
     public List<DataSource> selectBatch(List<String> ids) {
         List<DataSource> dataSources = dataSourceMapper.selectBatchIds(ids);
         return dataSources;
@@ -137,5 +121,9 @@ public class DataSourceService {
             t.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             dataSourceMapper.insert(t);
         });
+    }
+
+    public List<DataSource> getAllByType(String type) {
+        return dataSourceMapper.getAllByType(type);
     }
 }

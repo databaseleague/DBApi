@@ -21,4 +21,8 @@ public class Constants {
     public static int PLUGIN_TYPE_GLOBAL_TRANSFORM = 3;
     public static int PLUGIN_TYPE_TRANSFORM = 4;
 
+    public static String DATASOURCE_TYPE_JDBC = "jdbc";
+    public static String DATASOURCE_TYPE_HTTP = "http";
+    public static String DATASOURCE_TYPE_ES = "es";
+
 }

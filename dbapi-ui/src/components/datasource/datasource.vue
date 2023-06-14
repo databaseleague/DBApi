@@ -3,16 +3,16 @@
     <div>
       <ul>
         <li>
-          <router-link to="/datasource/add">
-            <el-button icon="el-icon-plus" size="mini" type="primary" plain>{{$t('m.create_ds')}}</el-button>
-          </router-link>
+          <!--          <router-link to="/datasource/add">-->
+          <el-button icon="el-icon-plus" size="mini" type="primary" plain @click="handleAdd()">{{ $t('m.create_ds') }}</el-button>
+          <!--          </router-link>-->
         </li>
         <li>
-          <el-button @click="show=true" icon="el-icon-download" round size="mini" plain>{{$t('m.export_ds')}}</el-button>
+          <el-button @click="show=true" icon="el-icon-download" round size="mini" plain>{{ $t('m.export_ds') }}</el-button>
         </li>
         <li>
           <el-upload action="/datasource/import" accept=".json" :on-success="importSuccess" :headers="headers" :on-error="importFail" :file-list="fileList">
-            <el-button type="warning" icon="el-icon-upload2" round size="mini" plain>{{$t('m.import_ds')}}</el-button>
+            <el-button type="warning" icon="el-icon-upload2" round size="mini" plain>{{ $t('m.import_ds') }}</el-button>
           </el-upload>
         </li>
       </ul>
@@ -51,20 +51,31 @@
     <el-dialog :title="$t('m.export_ds')" :visible.sync="show">
       <ul>
         <li v-for="item in tableData">
-          <el-checkbox v-model="item.checked">{{item.name}}</el-checkbox>
+          <el-checkbox v-model="item.checked">{{ item.name }}</el-checkbox>
         </li>
       </ul>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="show = false">{{$t('m.cancel')}}</el-button>
-        <el-button type="primary" @click="show = false;exportConfig()">{{$t('m.export')}}</el-button>
+        <el-button @click="show = false">{{ $t('m.cancel') }}</el-button>
+        <el-button type="primary" @click="show = false;exportConfig()">{{ $t('m.export') }}</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog :title="datasource_title" :visible.sync="dialog1">
+      <common ref="dscommon" :id="id" @saveSuccess="saveSuccess"></common>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialog1 = false">{{ $t('m.cancel') }}</el-button>
+        <el-button type="primary" @click="save()">{{ $t('m.save') }}</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import common from '@/components/datasource/common'
+
 export default {
   name: "datasource",
+  components: {common},
   data() {
     return {
       tableData: [],
@@ -73,21 +84,37 @@ export default {
         Authorization: localStorage.getItem("token"),
       },
       fileList: [],
+      dialog1: false,
+      id: null,
+      datasource_title: null
     };
   },
   methods: {
+    saveSuccess(){
+      this.dialog1 = false;
+      this.getAllSource();
+      this.id = null;// id 必须变化子组件才能检测到并重新加载数据，所以id置空。编辑保存后，下次再点编辑是重新加载数据，主要是jdbc数据源密码框要重新获取加密后的密码
+    },
+    handleAdd() {
+      this.id = null
+      this.dialog1 = true
+      this.datasource_title = window.vm.$t('m.create_ds')
+    },
+    save() {
+      this.$refs.dscommon.save()
+    },
     exportConfig() {
       const ids = this.tableData.filter((t) => t.checked).map((t) => t.id);
       console.log(ids);
       this.axios({
         method: "post",
-        params: { ids: ids.join(",") },
+        params: {ids: ids.join(",")},
         url: "/datasource/export",
         responseType: "blob", //这个很重要
       })
         .then((res) => {
           const link = document.createElement("a");
-          let blob = new Blob([res.data], { type: "application/x-msdownload" });
+          let blob = new Blob([res.data], {type: "application/x-msdownload"});
           link.style.display = "none";
           link.href = URL.createObjectURL(blob);
           link.setAttribute("download", "datasource.json");
@@ -109,10 +136,12 @@ export default {
       this.$message.error("Import failed!  " + error.message);
     },
     detail(id) {
-      this.$router.push({ path: "/datasource/detail", query: { id: id } });
+      this.$router.push({path: "/datasource/detail", query: {id: id}});
     },
-    handleEdit(id) {
-      this.$router.push({ path: "/datasource/edit", query: { id: id } });
+    handleEdit(data) {
+      this.id = data
+      this.dialog1 = true;
+      this.datasource_title = window.vm.$t('m.update_ds')
     },
     getAllSource() {
       this.axios
@@ -151,8 +180,10 @@ export default {
   font-family: "Consolas", Helvetica, Arial, sans-serif;
   /*font-size: 18px;*/
 }
+
 ul {
   margin-bottom: 10px;
+
   li {
     display: inline-block;
     margin-right: 10px;

@@ -80,7 +80,7 @@ Vue.filter('dateFormat', function (originVal) {
 })
 
 
-new Vue({
+window.vm = new Vue({
     router,
     i18n,
     store,

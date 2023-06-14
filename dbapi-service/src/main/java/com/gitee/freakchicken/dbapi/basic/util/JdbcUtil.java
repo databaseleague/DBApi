@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidPooledConnection;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
+import com.gitee.freakchicken.dbapi.basic.domain.JdbcDataSource;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
@@ -19,7 +20,7 @@ public class JdbcUtil {
         return resultSet;
     }
 
-    public static Connection getConnection(DataSource ds) throws Exception {
+    public static Connection getConnection(JdbcDataSource ds) throws Exception {
         try {
             Class.forName(ds.getDriver());
             String password = ds.isEdit_password() ? ds.getPassword() : DESUtils.decrypt(ds.getPassword());

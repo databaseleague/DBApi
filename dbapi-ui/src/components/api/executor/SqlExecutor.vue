@@ -124,7 +124,7 @@ export default {
       return true
     },
     getAllSource() {
-      this.axios.post("/datasource/getAll").then((response) => {
+      this.axios.post("/datasource/getAllByType/", {type: 'jdbc'}).then((response) => {
         this.datasources = response.data
       }).catch((error) => {
         this.$message.error("Get all datasources Failed")

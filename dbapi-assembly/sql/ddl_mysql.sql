@@ -72,7 +72,7 @@ CREATE TABLE `client`
     `name`            varchar(255)          DEFAULT NULL,
     `note`            varchar(1024)         DEFAULT NULL,
     `secret`          varchar(255)          DEFAULT NULL,
-    `public_key`     varchar(1024)         DEFAULT NULL,
+    `public_key`      varchar(1024)         DEFAULT NULL,
     `expire_desc`     varchar(255)          DEFAULT NULL,
     `expire_duration` varchar(255)          DEFAULT NULL,
     `token`           varchar(255)          DEFAULT NULL,
@@ -101,18 +101,14 @@ CREATE TABLE `client_auth`
 DROP TABLE IF EXISTS `datasource`;
 CREATE TABLE `datasource`
 (
-    `id`             varchar(255) NOT NULL,
-    `name`           varchar(255) DEFAULT NULL,
-    `note`           varchar(255) DEFAULT NULL,
-    `type`           varchar(255) DEFAULT NULL,
-    `url`            varchar(255) DEFAULT NULL,
-    `username`       varchar(255) DEFAULT NULL,
-    `password`       varchar(255) DEFAULT NULL,
-    `driver`         varchar(100) DEFAULT NULL,
-    `table_sql`      varchar(255) DEFAULT NULL,
+    `id`             varchar(20) NOT NULL,
+    `name`           varchar(255)  DEFAULT NULL,
+    `note`           varchar(255)  DEFAULT NULL,
+    `type`           varchar(20)   DEFAULT NULL,
+    `detail`         varchar(1024) DEFAULT NULL,
     `create_user_id` int(11) DEFAULT NULL,
-    `update_time`    varchar(20)  DEFAULT NULL,
-    `create_time`    varchar(20)  DEFAULT NULL,
+    `create_time`    varchar(20)   DEFAULT NULL,
+    `update_time`    varchar(20)   DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 

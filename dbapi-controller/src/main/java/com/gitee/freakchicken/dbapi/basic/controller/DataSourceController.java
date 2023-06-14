@@ -1,18 +1,19 @@
 package com.gitee.freakchicken.dbapi.basic.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
+import com.gitee.freakchicken.dbapi.basic.domain.JdbcDataSource;
 import com.gitee.freakchicken.dbapi.basic.service.DataSourceService;
+import com.gitee.freakchicken.dbapi.basic.util.Constants;
+import com.gitee.freakchicken.dbapi.basic.util.DESUtils;
 import com.gitee.freakchicken.dbapi.basic.util.JdbcUtil;
 import com.gitee.freakchicken.dbapi.basic.util.ThreadContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.gitee.freakchicken.dbapi.common.ResponseDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,7 +41,23 @@ public class DataSourceController {
     DataSourceService dataSourceService;
 
     @RequestMapping("/add")
-    public void add(DataSource dataSource) {
+    public void add(@RequestBody JSONObject jo) {
+        DataSource dataSource = new DataSource();
+        dataSource.setName(jo.getString("name"));
+        dataSource.setNote(jo.getString("note"));
+        dataSource.setType(jo.getString("type"));
+
+        JSONObject detail = jo.getJSONObject("detail");
+        if (dataSource.isJdbcType()) {
+            JdbcDataSource source = detail.toJavaObject(JdbcDataSource.class);
+            try {
+                // 新增数据源对密码加密
+                source.setPassword(DESUtils.encrypt(source.getPassword()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dataSource.setDetail(JSON.toJSONString(source));
+        }
         dataSource.setCreateUserId(ThreadContainer.getCurrentThreadUserId());
         dataSourceService.add(dataSource);
     }
@@ -48,6 +65,11 @@ public class DataSourceController {
     @RequestMapping("/getAll")
     public List<DataSource> getAll() {
         return dataSourceService.getAll();
+    }
+
+    @RequestMapping("/getAllByType")
+    public List<DataSource> getAllByType(String type) {
+        return dataSourceService.getAllByType(type);
     }
 
     @RequestMapping("/detail/{id}")
@@ -61,13 +83,33 @@ public class DataSourceController {
     }
 
     @RequestMapping("/update")
-    public DataSource update(DataSource dataSource) {
+    public void update(@RequestBody JSONObject jo) {
+        DataSource dataSource = new DataSource();
+        dataSource.setId(jo.getString("id"));
+        dataSource.setName(jo.getString("name"));
+        dataSource.setNote(jo.getString("note"));
+        dataSource.setType(jo.getString("type"));
+
+        JSONObject detail = jo.getJSONObject("detail");
+        if (dataSource.isJdbcType()) {
+            JdbcDataSource source = detail.toJavaObject(JdbcDataSource.class);
+            if (detail.getBoolean("edit_password")) {
+                try {
+                    //对密码加密
+                    source.setPassword(DESUtils.encrypt(source.getPassword()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            dataSource.setDetail(JSON.toJSONString(source));
+        }
+        dataSource.setCreateUserId(ThreadContainer.getCurrentThreadUserId());
         dataSourceService.update(dataSource);
-        return null;
     }
 
     @RequestMapping("/connect")
-    public ResponseDto connect(DataSource dataSource) {
+    public ResponseDto connect(JdbcDataSource dataSource) {
         Connection connection = null;
         try {
             connection = JdbcUtil.getConnection(dataSource);

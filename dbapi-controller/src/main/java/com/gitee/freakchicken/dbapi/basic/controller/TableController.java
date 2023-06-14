@@ -33,7 +33,7 @@ public class TableController {
     public List<JSONObject> getAllTables(String sourceId) throws SQLException {
         DataSource dataSource = dataSourceMapper.selectById(sourceId);
         DruidPooledConnection connection = PoolManager.getPooledConnection(dataSource);
-        List<String> tables = JdbcUtil.getAllTables(connection, dataSource.getTableSql());
+        List<String> tables = JdbcUtil.getAllTables(connection, dataSource.getJdbcDataSource().getTableSql());
         List<JSONObject> list = tables.stream().map(t -> {
             JSONObject jo = new JSONObject();
             jo.put("label", t);

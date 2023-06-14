@@ -3,6 +3,7 @@ package com.gitee.freakchicken.dbapi.basic.util;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
+import com.gitee.freakchicken.dbapi.basic.domain.JdbcDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -29,18 +30,19 @@ public class PoolManager {
         if (map.containsKey(ds.getId())) {
             return map.get(ds.getId());
         } else {
+            JdbcDataSource jdbcDataSource = ds.getJdbcDataSource();
 
             DruidDataSource druidDataSource = new DruidDataSource();
             druidDataSource.setName(ds.getName());
-            druidDataSource.setUrl(ds.getUrl());
-            druidDataSource.setUsername(ds.getUsername());
+            druidDataSource.setUrl(jdbcDataSource.getUrl());
+            druidDataSource.setUsername(jdbcDataSource.getUsername());
 //            druidDataSource.setPassword(ds.getPassword());
-            druidDataSource.setDriverClassName(ds.getDriver());
+            druidDataSource.setDriverClassName(jdbcDataSource.getDriver());
             druidDataSource.setConnectionErrorRetryAttempts(3);       //失败后重连次数
             druidDataSource.setBreakAfterAcquireFailure(true);
 
             try {
-                druidDataSource.setPassword(DESUtils.decrypt(ds.getPassword()));
+                druidDataSource.setPassword(DESUtils.decrypt(jdbcDataSource.getPassword()));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
