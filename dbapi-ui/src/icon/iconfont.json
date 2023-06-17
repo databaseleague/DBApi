@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6145505",
+      "name": "database",
+      "font_class": "database1",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "33068475",
+      "name": "Elastic ElasticSearch-copy",
+      "font_class": "elastic",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "5401579",
       "name": "分组管理",
       "font_class": "fenzuguanli",
