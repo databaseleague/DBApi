@@ -64,6 +64,12 @@
 
 ## 联系
 
+### 微信公众号
+<div style="text-align: center"> 
+<img src="https://freakchicken.gitee.io/images/dbApi/wechat.jpg" width = "40%" />
+</div>
+
+
 ### QQ交流群：
 - 在群里提问前请先把文档读一遍，并阅读[常见问题汇总](https://www.51dbapi.com/zh/question/)
 - **提问请高效提问，提供日志、截图、现象、软件版本、部署模式，不要让回答者替你去思考你的问题是什么**
