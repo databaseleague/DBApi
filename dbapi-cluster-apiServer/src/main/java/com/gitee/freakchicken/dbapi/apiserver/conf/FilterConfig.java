@@ -32,7 +32,7 @@ public class FilterConfig {
         registrationBean.addUrlPatterns(format);
         registrationBean.setOrder(authFilterOrder);
         registrationBean.setEnabled(true);
-        log.info("regist authFilter for {} UrlPatterns, and order is {}",format,authFilterOrder);
+        log.info("regist authFilter for {} UrlPatterns, and order is {}", format, authFilterOrder);
         return registrationBean;
     }
 }
