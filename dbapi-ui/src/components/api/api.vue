@@ -144,7 +144,7 @@
       </el-dialog>
 
       <el-dialog :title="$t('m.export_api_groups')" :visible.sync="dialogVisible4" @open="getAllGroups">
-        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">{{ $t('m.select_all') }}</el-checkbox>
         <div style="margin: 15px 0;"></div>
         <el-checkbox-group v-model="checkList" @change="handleCheckedItemChange">
           <el-checkbox v-for="item in groups" :label="item.id" :key="item.id">{{ item.name }}<span style="color: #ccc">{{ item.id }}</span></el-checkbox>

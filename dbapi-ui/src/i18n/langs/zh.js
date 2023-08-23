@@ -20,7 +20,7 @@ const cn = {
     jdbc_driver_class: 'JDBC驱动Class',
     username: '用户名',
     password: '密码',
-    change_password :'修改密码',
+    change_password: '修改密码',
     edit_password: '修改',
     sql_query_all_table_name: '查询所有表名称的SQL',
     test_connection: '连接测试',
@@ -140,7 +140,6 @@ const cn = {
     no_data: '暂无数据',
 
 
-
     mode: '模式',
     black_list: '黑名单',
     white_list: '白名单',
@@ -180,7 +179,8 @@ const cn = {
     top_n_duration: '平均访问时长最大的API',
     settings: '系统设置',
 
-    client_auth_btn_tip: '授权客户端访问API'
+    client_auth_btn_tip: '授权客户端访问API',
+    select_all: '全选'
   },
   ...zhLocale
 }

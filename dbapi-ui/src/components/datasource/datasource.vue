@@ -50,7 +50,7 @@
     </div>
 
     <el-dialog :title="$t('m.export_ds')" :visible.sync="show">
-      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">{{ $t('m.select_all') }}</el-checkbox>
       <div style="margin: 15px 0;"></div>
       <el-checkbox-group v-model="checkedDatasources" @change="handleCheckedItemChange">
         <el-checkbox v-for="item in tableData" :label="item.id" :key="item.id">{{ item.name }}</el-checkbox>

@@ -176,7 +176,8 @@ const en = {
     top_n_duration: 'API with largest average access time',
     settings: 'Settings',
 
-    client_auth_btn_tip: 'Authorize client to access API'
+    client_auth_btn_tip: 'Authorize client to access API',
+    select_all: 'Select All'
 
   },
   ...enLocale
