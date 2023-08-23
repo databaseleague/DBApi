@@ -1,9 +1,8 @@
 package com.gitee.freakchicken.dbapi.plugin;
 
+import com.gitee.freakchicken.dbapi.common.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.gitee.freakchicken.dbapi.common.ResponseDto;
 
 public abstract class GlobalTransformPlugin implements BasePlugin {
 

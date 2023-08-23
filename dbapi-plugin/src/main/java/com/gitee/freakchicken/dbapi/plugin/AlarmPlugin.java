@@ -1,7 +1,6 @@
 package com.gitee.freakchicken.dbapi.plugin;
 
 import com.gitee.freakchicken.dbapi.common.ApiConfig;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +17,7 @@ public abstract class AlarmPlugin implements BasePlugin {
 
     /**
      * 告警逻辑
-     * 
+     *
      * @param e                异常
      * @param config           API元数据
      * @param request          请求

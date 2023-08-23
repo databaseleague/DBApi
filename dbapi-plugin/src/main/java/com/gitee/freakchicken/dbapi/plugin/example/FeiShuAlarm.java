@@ -25,10 +25,10 @@ public class FeiShuAlarm extends AlarmPlugin {
     @Override
     public void alarm(Exception e, ApiConfig config, HttpServletRequest request, String pluginParam) {
         String format = MessageFormat.format("InterfaceName：{0} \\n ErrorMassage：{1} \\nErrorURL: {2} \\nRemoteAddress: {3}",
-                config.getName(), e.getMessage(),request.getRequestURI(),request.getRemoteAddr());
+                config.getName(), e.getMessage(), request.getRequestURI(), request.getRemoteAddr());
 
         String body = "{\"msg_type\":\"text\",\"content\":{\"text\":\"" + format + "\"}}";
-        sendDingTalkMassage(pluginParam,body);
+        sendDingTalkMassage(pluginParam, body);
     }
 
     @Override
@@ -46,13 +46,13 @@ public class FeiShuAlarm extends AlarmPlugin {
         return "填写从飞书群中获取到的机器人WebHook";
     }
 
-    public String sendDingTalkMassage(String webHook,String body){
+    public String sendDingTalkMassage(String webHook, String body) {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         CloseableHttpResponse response = null;
         HttpPost httpPost = new HttpPost(webHook);
         httpPost.setHeader("Content-Type", "application/json;charset=utf8");
         try {
-            StringEntity stringEntity = new StringEntity(body,"utf-8");
+            StringEntity stringEntity = new StringEntity(body, "utf-8");
             httpPost.setEntity(stringEntity);
             response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();
@@ -63,7 +63,7 @@ public class FeiShuAlarm extends AlarmPlugin {
             try {
                 if (httpClient != null) httpClient.close();
                 if (response != null) response.close();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
