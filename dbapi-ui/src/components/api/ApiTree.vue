@@ -4,7 +4,7 @@
 
     <el-button type="primary" icon="el-icon-refresh" circle @click="getAllApiTree" size="mini" plain></el-button>
 
-    <el-tree :data="data" node-key="id" :expand-on-click-node="true" :props="defaultProp">
+    <el-tree :data="data" node-key="id" :expand-on-click-node="true" :props="defaultProp" highlight-current>
         <span class="custom-tree-node" slot-scope="{ node, data }">
 <!--          <div class="left">-->
             <span class="left">
