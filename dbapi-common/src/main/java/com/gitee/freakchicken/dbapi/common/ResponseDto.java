@@ -15,7 +15,7 @@ public class ResponseDto {
     String msg;
     boolean success;
 
-    @JSONField(serialzeFeatures = { SerializerFeature.WriteMapNullValue })
+    @JSONField(serialzeFeatures = {SerializerFeature.WriteMapNullValue})
     Object data;
 
     public String getMsg() {

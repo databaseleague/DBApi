@@ -1,6 +1,7 @@
 package com.gitee.freakchicken.dbapi.common;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class ApiPluginConfig implements Serializable {
 
     @TableField("plugin_type")
     Integer pluginType;
-    
+
     @TableField("plugin_name")
     String pluginName;
 
