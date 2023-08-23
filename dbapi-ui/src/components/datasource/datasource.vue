@@ -17,36 +17,37 @@
         </li>
       </ul>
     </div>
+    <div style="height: calc(100vh - 150px);overflow: auto;">
+      <el-table :data="tableData" border stripe>
+        <el-table-column prop="id" label="id" width="270px"></el-table-column>
+        <el-table-column :label="$t('m.name')">
+          <template slot-scope="scope">
+            <db-icon :type="scope.row.type"></db-icon>
+            <span>{{ scope.row.name }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="note" :label="$t('m.note')"></el-table-column>
+        <el-table-column prop="updateTime" :label="$t('m.update_time')" width="170px"></el-table-column>
+        <el-table-column :label="$t('m.operation')" width="220px">
+          <template slot-scope="scope">
 
-    <el-table :data="tableData" border stripe max-height="700">
-      <el-table-column prop="id" label="id" width="270px"></el-table-column>
-      <el-table-column :label="$t('m.name')">
-        <template slot-scope="scope">
-          <db-icon :type="scope.row.type"></db-icon>
-          <span>{{ scope.row.name }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="note" :label="$t('m.note')"></el-table-column>
-      <el-table-column prop="updateTime" :label="$t('m.update_time')" width="170px"></el-table-column>
-      <el-table-column :label="$t('m.operation')" width="220px">
-        <template slot-scope="scope">
-
-          <!-- <el-button plain size="mini" type="info" @click="detail(scope.row.id)" circle>
-            <i class="iconfont icon-detail"></i>
-          </el-button> -->
-          <el-tooltip placement="top" effect="dark" :content="$t('m.edit')">
-            <el-button plain size="mini" type="warning" @click="handleEdit(scope.row.id)" circle>
-              <i class="el-icon-edit"></i>
-            </el-button>
-          </el-tooltip>
-          <el-tooltip placement="top" effect="dark" :content="$t('m.delete')">
-            <el-button plain size="mini" type="danger" @click="handleDelete(scope.row.id)" circle>
-              <i class="el-icon-delete"></i>
-            </el-button>
-          </el-tooltip>
-        </template>
-      </el-table-column>
-    </el-table>
+            <!-- <el-button plain size="mini" type="info" @click="detail(scope.row.id)" circle>
+              <i class="iconfont icon-detail"></i>
+            </el-button> -->
+            <el-tooltip placement="top" effect="dark" :content="$t('m.edit')">
+              <el-button plain size="mini" type="warning" @click="handleEdit(scope.row.id)" circle>
+                <i class="el-icon-edit"></i>
+              </el-button>
+            </el-tooltip>
+            <el-tooltip placement="top" effect="dark" :content="$t('m.delete')">
+              <el-button plain size="mini" type="danger" @click="handleDelete(scope.row.id)" circle>
+                <i class="el-icon-delete"></i>
+              </el-button>
+            </el-tooltip>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
     <el-dialog :title="$t('m.export_ds')" :visible.sync="show">
       <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
