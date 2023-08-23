@@ -7,15 +7,15 @@
     <el-tree :data="data" node-key="id" :expand-on-click-node="true" :props="defaultProp">
         <span class="custom-tree-node" slot-scope="{ node, data }">
 <!--          <div class="left">-->
-            <span class="left" >
+            <span class="left">
 
               <span class="el-icon-folder-opened title" v-if="data.type=='group'" :title="node.label"> {{ node.label }}</span>
               <span class="iconfont icon-api title" :class="{disable:data.status === 0}" v-if="data.type=='api'" :title="node.label"> {{ node.label }}</span>
             </span>
-<!--            <span class="iconfont icon-api"  v-if="data.type=='api'">{{ node.label }}</span>-->
-<!--          </div>-->
+          <!--            <span class="iconfont icon-api"  v-if="data.type=='api'">{{ node.label }}</span>-->
+          <!--          </div>-->
 
-<!--          <div class="right">-->
+          <!--          <div class="right">-->
             <span class="align:right" v-if="data.type=='api'">
               <el-dropdown size="medium">
                   <i class="el-icon-more-outline"></i>
@@ -53,8 +53,8 @@
             </span>
             <span class="align:right" v-if="data.type=='group'">
 <!--              <el-tooltip :open-delay="500" class="item" effect="light" content="Delete Group" placement="top" v-if="data.children.length == 0">-->
-<!--                <i class="el-icon-delete" @click="deleteGroup(data.id)" style="color: #c50303"></i>-->
-<!--              </el-tooltip>-->
+              <!--                <i class="el-icon-delete" @click="deleteGroup(data.id)" style="color: #c50303"></i>-->
+              <!--              </el-tooltip>-->
               <el-tooltip :open-delay="500" class="item" effect="light" :content="$t('m.create_api')" placement="top">
                 <i class="el-icon-circle-plus" @click="$router.push({path: '/api/add', query: {groupId: data.id}});"></i>
               </el-tooltip>
@@ -68,7 +68,7 @@
                   </el-dropdown-item>
 
                   <el-dropdown-item v-if="data.children.length == 0">
-                    <el-tooltip class="item" effect="light" :content="$t('m.delete')" placement="left" >
+                    <el-tooltip class="item" effect="light" :content="$t('m.delete')" placement="left">
                       <i class="el-icon-delete" style="color: #c50303" @click="deleteGroup(data.id)"></i>
                     </el-tooltip>
                   </el-dropdown-item>
@@ -76,7 +76,7 @@
                 </el-dropdown-menu>
               </el-dropdown>
             </span>
-<!--          </div>-->
+          <!--          </div>-->
         </span>
     </el-tree>
 
@@ -117,61 +117,61 @@ export default {
       defaultProp: {children: 'children', label: 'name'},
       createDialog: false,
       editGroupDialog: false,
-      groupDetail:{
-        id:null,
-        name:null
+      groupDetail: {
+        id: null,
+        name: null
       }
     }
   },
   methods: {
-    editGroup(){
+    editGroup() {
       this.axios
-        .post("/group/update/",this.groupDetail)
-        .then((response) => {
-          this.$message.success("Edit Group Success");
-          this.getAllApiTree();
-        })
-        .catch((error) => {
-          this.$message.error("Edit Group Failed");
-        });
+          .post("/group/update/", this.groupDetail)
+          .then((response) => {
+            this.$message.success("Edit Group Success");
+            this.getAllApiTree();
+          })
+          .catch((error) => {
+            this.$message.error("Edit Group Failed");
+          });
     },
-    handleEditGroup(data){
+    handleEditGroup(data) {
       this.groupDetail.id = data.id
       this.groupDetail.name = data.name
     },
     deleteAPI(id) {
       this.axios
-        .post("/apiConfig/delete/" + id)
-        .then((response) => {
-          this.$message.success("Delete Success");
-          this.getAllApiTree();
-        })
-        .catch((error) => {
-          this.$message.error("Delete Failed");
-        });
+          .post("/apiConfig/delete/" + id)
+          .then((response) => {
+            this.$message.success("Delete Success");
+            this.getAllApiTree();
+          })
+          .catch((error) => {
+            this.$message.error("Delete Failed");
+          });
     },
     online(id) {
       debugger
       this.axios
-        .post("/apiConfig/online/" + id)
-        .then((response) => {
-          this.$message.success("Publish Success");
-          this.getAllApiTree();
-        })
-        .catch((error) => {
-          this.$message.error("Publish Failed");
-        });
+          .post("/apiConfig/online/" + id)
+          .then((response) => {
+            this.$message.success("Publish Success");
+            this.getAllApiTree();
+          })
+          .catch((error) => {
+            this.$message.error("Publish Failed");
+          });
     },
     offline(id) {
       this.axios
-        .post("/apiConfig/offline/" + id)
-        .then((response) => {
-          this.$message.success("Already Offline");
-          this.getAllApiTree();
-        })
-        .catch((error) => {
-          this.$message.error("Offline Failed");
-        });
+          .post("/apiConfig/offline/" + id)
+          .then((response) => {
+            this.$message.success("Already Offline");
+            this.getAllApiTree();
+          })
+          .catch((error) => {
+            this.$message.error("Offline Failed");
+          });
     },
     createGroup() {
       this.axios.post("/group/create/", {name: this.groupName}).then((response) => {
@@ -183,6 +183,7 @@ export default {
     deleteGroup(id) {
       this.axios.post("/group/delete/" + id).then((response) => {
         if (response.data.success) {
+          this.$message.success(response.data.msg)
           this.getAllApiTree()
         } else {
           this.$message.error(response.data.msg)
@@ -192,13 +193,13 @@ export default {
     },
     getAllApiTree() {
       this.axios
-        .post("/apiConfig/getApiTree")
-        .then((response) => {
-          this.data = response.data;
-        })
-        .catch((error) => {
-          // this.$message.error("查询所有api失败")
-        });
+          .post("/apiConfig/getApiTree")
+          .then((response) => {
+            this.data = response.data;
+          })
+          .catch((error) => {
+            // this.$message.error("查询所有api失败")
+          });
     },
   },
   created() {
@@ -212,7 +213,7 @@ export default {
   box-shadow: 0px 0px 3px 2px rgba(196, 194, 194, 0.34);
   height: calc(100vh - 100px);
   font-size: 18px;
-  padding: 5px ;
+  padding: 5px;
   overflow: auto;
   //border-radius: 5px;
 
@@ -233,16 +234,17 @@ export default {
     font-size: 14px;
     //padding-right: 8px;
 
-    .left{
+    .left {
 
-        width: 220px;
-        //background-color: #ec8282;
-        overflow: hidden; // 文字超长隐藏
-        text-overflow: ellipsis; // 显示...
-        white-space: nowrap; // 单行显示
+      width: 220px;
+      //background-color: #ec8282;
+      overflow: hidden; // 文字超长隐藏
+      text-overflow: ellipsis; // 显示...
+      white-space: nowrap; // 单行显示
 
     }
-    .right{
+
+    .right {
       width: 50px;
       background-color: #ec5d5d;
       //text-align: right;
