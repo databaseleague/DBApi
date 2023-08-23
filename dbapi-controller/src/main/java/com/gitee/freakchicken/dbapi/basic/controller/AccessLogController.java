@@ -22,6 +22,7 @@ public class AccessLogController {
         List<AccessLog> all = accessLogService.getAll();
         return all;
     }
+
     @RequestMapping("/search")
     public List<AccessLog> search(String url, String clientId, Long start, Long end, Integer status, String ip) {
         return accessLogService.search(url, clientId, start, end, status, ip);
@@ -33,27 +34,27 @@ public class AccessLogController {
     }
 
     @RequestMapping("/top5api")
-    public List<JSONObject> top5api( long start,  long end){
+    public List<JSONObject> top5api(long start, long end) {
         return accessLogService.top5api(start, end);
     }
 
     @RequestMapping("/top5client")
-    public List<JSONObject> top5client(long start, long end){
+    public List<JSONObject> top5client(long start, long end) {
         return accessLogService.top5client(start, end);
     }
 
     @RequestMapping("/topNIP")
-    public List<JSONObject> topNIP(long start, long end){
+    public List<JSONObject> topNIP(long start, long end) {
         return accessLogService.topNIP(start, end);
     }
 
     @RequestMapping("/top5duration")
-    public List<JSONObject> top5duration(long start, long end){
+    public List<JSONObject> top5duration(long start, long end) {
         return accessLogService.top5duration(start, end);
     }
 
     @RequestMapping("/successRatio")
-    public JSONObject successRatio(long start, long end){
+    public JSONObject successRatio(long start, long end) {
         return accessLogService.successRatio(start, end);
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * 添加拦截
+ *
  * @author jiangqiang
  * @date 2019年4月14日上午12:10:36
  */
@@ -17,27 +18,27 @@ import java.util.List;
 public class MyConfig implements WebMvcConfigurer {
 
 
-	@Autowired
-	JwtAuthenticationInterceptor jwtAuthenticationInterceptor;
+    @Autowired
+    JwtAuthenticationInterceptor jwtAuthenticationInterceptor;
 
-	/**
-	 * 添加拦截器
-	 */
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+    /**
+     * 添加拦截器
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 
-		List<String > patterns = new ArrayList<>();
-		patterns.add("/user/login");
-		patterns.add("/token/generate");
-		patterns.add("/access/**");
-		patterns.add("/js/**");
-		patterns.add("/css/**");
-		patterns.add("/fonts/**");
-		patterns.add("/index.html");
-		patterns.add("/error");
+        List<String> patterns = new ArrayList<>();
+        patterns.add("/user/login");
+        patterns.add("/token/generate");
+        patterns.add("/access/**");
+        patterns.add("/js/**");
+        patterns.add("/css/**");
+        patterns.add("/fonts/**");
+        patterns.add("/index.html");
+        patterns.add("/error");
 
-		registry.addInterceptor(jwtAuthenticationInterceptor).excludePathPatterns(patterns).addPathPatterns("/**");
-	}
+        registry.addInterceptor(jwtAuthenticationInterceptor).excludePathPatterns(patterns).addPathPatterns("/**");
+    }
 
 
 }

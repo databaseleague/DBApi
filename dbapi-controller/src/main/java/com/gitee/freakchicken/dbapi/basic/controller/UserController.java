@@ -1,12 +1,12 @@
 package com.gitee.freakchicken.dbapi.basic.controller;
 
-import com.gitee.freakchicken.dbapi.basic.service.UserService;
 import com.gitee.freakchicken.dbapi.basic.domain.User;
+import com.gitee.freakchicken.dbapi.basic.service.UserService;
 import com.gitee.freakchicken.dbapi.basic.util.JwtUtils;
+import com.gitee.freakchicken.dbapi.common.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gitee.freakchicken.dbapi.common.ResponseDto;
 
 @RestController
 @RequestMapping("/user")

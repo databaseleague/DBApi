@@ -1,7 +1,7 @@
 package com.gitee.freakchicken.dbapi.basic.conf;
 
-import com.gitee.freakchicken.dbapi.basic.service.UserService;
 import com.gitee.freakchicken.dbapi.basic.domain.User;
+import com.gitee.freakchicken.dbapi.basic.service.UserService;
 import com.gitee.freakchicken.dbapi.basic.util.JwtUtils;
 import com.gitee.freakchicken.dbapi.basic.util.ThreadContainer;
 import lombok.extern.slf4j.Slf4j;

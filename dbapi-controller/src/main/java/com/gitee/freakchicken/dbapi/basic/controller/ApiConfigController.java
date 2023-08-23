@@ -1,14 +1,26 @@
 package com.gitee.freakchicken.dbapi.basic.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletResponse;
-
-import com.gitee.freakchicken.dbapi.basic.util.*;
+import com.alibaba.druid.pool.DruidPooledConnection;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
+import com.gitee.freakchicken.dbapi.basic.domain.Group;
+import com.gitee.freakchicken.dbapi.basic.service.ApiConfigService;
+import com.gitee.freakchicken.dbapi.basic.service.DataSourceService;
+import com.gitee.freakchicken.dbapi.basic.service.GroupService;
+import com.gitee.freakchicken.dbapi.basic.util.Constants;
+import com.gitee.freakchicken.dbapi.basic.util.JdbcUtil;
+import com.gitee.freakchicken.dbapi.basic.util.PoolManager;
+import com.gitee.freakchicken.dbapi.basic.util.SqlEngineUtil;
+import com.gitee.freakchicken.dbapi.basic.util.ThreadContainer;
+import com.gitee.freakchicken.dbapi.basic.util.UUIDUtil;
+import com.gitee.freakchicken.dbapi.common.ApiConfig;
+import com.gitee.freakchicken.dbapi.common.ApiPluginConfig;
+import com.gitee.freakchicken.dbapi.common.ResponseDto;
+import com.github.freakchick.orange.SqlMeta;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -21,22 +33,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.druid.pool.DruidPooledConnection;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
-import com.gitee.freakchicken.dbapi.basic.domain.Group;
-import com.gitee.freakchicken.dbapi.basic.service.ApiConfigService;
-import com.gitee.freakchicken.dbapi.basic.service.DataSourceService;
-import com.gitee.freakchicken.dbapi.basic.service.GroupService;
-import com.gitee.freakchicken.dbapi.common.ApiConfig;
-import com.gitee.freakchicken.dbapi.common.ApiPluginConfig;
-import com.gitee.freakchicken.dbapi.common.ResponseDto;
-import com.github.freakchick.orange.SqlMeta;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @program: dbApi
@@ -128,7 +134,7 @@ public class ApiConfigController {
     }
 
     @RequestMapping("/search")
-    public List<ApiConfig> search(String name, String note, String path,  String groupId) {
+    public List<ApiConfig> search(String name, String note, String path, String groupId) {
         return apiConfigService.search(name, note, path, groupId);
     }
 
@@ -162,7 +168,7 @@ public class ApiConfigController {
         array.add(jo.getJSONObject("globalTransformPlugin"));
 
         List<ApiPluginConfig> javaList = array.toJavaList(ApiPluginConfig.class);
-        List<ApiPluginConfig> collect = javaList.stream().filter(t -> t !=null && StringUtils.isNotEmpty(t.getPluginName())).collect(Collectors.toList());
+        List<ApiPluginConfig> collect = javaList.stream().filter(t -> t != null && StringUtils.isNotEmpty(t.getPluginName())).collect(Collectors.toList());
 
         return apiConfigService.update(config, collect);
     }
@@ -263,9 +269,9 @@ public class ApiConfigController {
         JSONObject jsonObject = JSON.parseObject(s);
         List<ApiConfig> apis = jsonObject.getJSONArray("api").toJavaList(ApiConfig.class);
         apis.stream().forEach(t -> {
-           t.setCreateUserId(ThreadContainer.getCurrentThreadUserId());
-            t.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss"));
-            t.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss"));
+            t.setCreateUserId(ThreadContainer.getCurrentThreadUserId());
+            t.setCreateTime(DateFormatUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
+            t.setUpdateTime(DateFormatUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
         });
         List<ApiPluginConfig> plugins = jsonObject.getJSONArray("plugins").toJavaList(ApiPluginConfig.class);
         apiConfigService.importAPI(apis, plugins);
@@ -277,8 +283,8 @@ public class ApiConfigController {
         List<Group> configs = JSON.parseArray(s, Group.class);
         configs.stream().forEach(t -> {
             t.setCreateUserId(ThreadContainer.getCurrentThreadUserId());
-            t.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss"));
-            t.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss"));
+            t.setCreateTime(DateFormatUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
+            t.setUpdateTime(DateFormatUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
         });
         groupService.insertBatch(configs);
     }
