@@ -7,8 +7,6 @@ import com.baomidou.dynamic.datasource.annotation.DS;
 import com.gitee.freakchicken.dbapi.basic.dao.ApiConfigMapper;
 import com.gitee.freakchicken.dbapi.basic.dao.DataSourceMapper;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
-import com.gitee.freakchicken.dbapi.basic.util.Constants;
-import com.gitee.freakchicken.dbapi.basic.util.DESUtils;
 import com.gitee.freakchicken.dbapi.basic.util.PoolManager;
 import com.gitee.freakchicken.dbapi.basic.util.UUIDUtil;
 import com.gitee.freakchicken.dbapi.common.ApiConfig;
@@ -58,7 +56,7 @@ public class DataSourceService {
     public void update(DataSource dataSource) {
         dataSource.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         dataSourceMapper.updateById(dataSource);
-        if (dataSource.isJdbcType()){
+        if (dataSource.isJdbcType()) {
             PoolManager.removeJdbcConnectionPool(dataSource.getId());
         }
         cacheManager.getCache("datasource").evictIfPresent(dataSource.getId());

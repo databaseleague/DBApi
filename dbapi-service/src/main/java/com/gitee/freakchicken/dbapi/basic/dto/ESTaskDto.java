@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ESTaskDto {
-    
+
     String method;
     String endpoint;
     String body;

@@ -3,13 +3,12 @@ package com.gitee.freakchicken.dbapi.basic.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gitee.freakchicken.dbapi.basic.domain.Client;
 import com.gitee.freakchicken.dbapi.basic.domain.ClientToken;
-
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface ClientMapper extends BaseMapper<Client> {

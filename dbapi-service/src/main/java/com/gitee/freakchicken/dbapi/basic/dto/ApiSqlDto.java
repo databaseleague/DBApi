@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ApiSqlDto {
-    
+
     String sqlText;
     String transformPlugin;
     String transformPluginParam;
-    
+
 }

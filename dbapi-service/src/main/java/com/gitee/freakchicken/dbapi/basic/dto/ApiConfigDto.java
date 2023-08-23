@@ -1,8 +1,9 @@
 package com.gitee.freakchicken.dbapi.basic.dto;
 
-import java.util.List;
 import com.gitee.freakchicken.dbapi.common.ApiPluginConfig;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ApiConfigDto {
@@ -33,5 +34,5 @@ public class ApiConfigDto {
 
     String updateTime;
 
-    List<ApiPluginConfig> plugins; 
+    List<ApiPluginConfig> plugins;
 }

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gitee.freakchicken.dbapi.basic.util.Constants;
 import lombok.Data;
 
-
 import java.io.Serializable;
 
 /**
@@ -48,7 +47,7 @@ public class DataSource implements Serializable {
 
     @JSONField(serialize = false)
     @JsonIgnore
-    public boolean isJdbcType(){
+    public boolean isJdbcType() {
         return Constants.DATASOURCE_TYPE_JDBC.equals(this.type);
     }
 

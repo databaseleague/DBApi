@@ -1,13 +1,16 @@
 package com.gitee.freakchicken.dbapi.basic.util;
 
-import com.alibaba.druid.pool.DruidPooledConnection;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
 import com.gitee.freakchicken.dbapi.basic.domain.JdbcDataSource;
 import lombok.extern.slf4j.Slf4j;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class JdbcUtil {
         try {
             Class.forName(ds.getDriver());
             String password = ds.isEdit_password() ? ds.getPassword() : DESUtils.decrypt(ds.getPassword());
-            Connection connection = DriverManager.getConnection(ds.getUrl(), ds.getUsername(),password);
+            Connection connection = DriverManager.getConnection(ds.getUrl(), ds.getUsername(), password);
             log.info("successfully connected");
             return connection;
         } catch (ClassNotFoundException e) {

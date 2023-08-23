@@ -10,5 +10,5 @@ public class ClientToken implements Serializable {
     String clientId;
     String token;
     Long expireAt;
-    
+
 }

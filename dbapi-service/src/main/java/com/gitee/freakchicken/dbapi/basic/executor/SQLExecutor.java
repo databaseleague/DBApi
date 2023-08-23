@@ -1,15 +1,5 @@
 package com.gitee.freakchicken.dbapi.basic.executor;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.alibaba.druid.pool.DruidPooledConnection;
 import com.alibaba.fastjson.JSONObject;
 import com.gitee.freakchicken.dbapi.basic.domain.DataSource;
@@ -22,8 +12,16 @@ import com.gitee.freakchicken.dbapi.basic.util.SqlEngineUtil;
 import com.gitee.freakchicken.dbapi.plugin.PluginManager;
 import com.gitee.freakchicken.dbapi.plugin.TransformPlugin;
 import com.github.freakchick.orange.SqlMeta;
-
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -64,7 +62,7 @@ public class SQLExecutor implements Executor {
     }
 
     public List<Object> executeSql(Connection connection, List<ApiSqlDto> sqlList, Map<String, Object> sqlParam,
-            boolean flag) {
+                                   boolean flag) {
         List<Object> dataList = new ArrayList<>();
         try {
             if (flag)

@@ -3,7 +3,11 @@ package com.gitee.freakchicken.dbapi.basic.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gitee.freakchicken.dbapi.basic.domain.ApiDto;
 import com.gitee.freakchicken.dbapi.common.ApiConfig;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -22,7 +26,7 @@ public interface ApiConfigMapper extends BaseMapper<ApiConfig> {
             "\t<if test='path != null and path !=\"\"'> and path like #{path} </if>\n" +
             "</where>" +
             "</script>")
-    List<ApiConfig> search(@Param("name")String name, @Param("note")String note, @Param("path")String path, @Param("groupId") String groupId);
+    List<ApiConfig> search(@Param("name") String name, @Param("note") String note, @Param("path") String path, @Param("groupId") String groupId);
 
     @Select("select count(1) from api_config where path=#{path}")
     Integer selectCountByPath(String path);

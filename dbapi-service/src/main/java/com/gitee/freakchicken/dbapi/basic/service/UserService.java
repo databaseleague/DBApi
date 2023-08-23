@@ -17,7 +17,7 @@ public class UserService {
     UserMapper userMapper;
 
     public User getUser(String username, String password) {
-        
+
         User user = userMapper.login(username, DigestUtils.md5Hex(password));
         return user;
     }
@@ -27,15 +27,15 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseDto resetPassword(String userId,String oldPassword, String newPassword) {
+    public ResponseDto resetPassword(String userId, String oldPassword, String newPassword) {
 
         User user = userMapper.selectById(userId);
-        if (user!=null && DigestUtils.md5Hex(oldPassword).equals(user.getPassword())){
+        if (user != null && DigestUtils.md5Hex(oldPassword).equals(user.getPassword())) {
 
             user.setPassword(DigestUtils.md5Hex(newPassword));
             userMapper.updateById(user);
             return ResponseDto.successWithMsg("Change password success!");
-        }else{
+        } else {
             return ResponseDto.fail("Old password incorrect");
         }
 

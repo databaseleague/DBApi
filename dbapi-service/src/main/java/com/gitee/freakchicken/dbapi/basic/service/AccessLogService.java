@@ -58,22 +58,23 @@ public class AccessLogService {
         return array;
     }
 
-    public List<JSONObject> top5api( long start,  long end){
+    public List<JSONObject> top5api(long start, long end) {
         return accessLogMapper.top5api(start, end);
     }
 
-    public List<JSONObject> top5client(long start, long end){
+    public List<JSONObject> top5client(long start, long end) {
         return accessLogMapper.top5client(start, end);
     }
 
-    public List<JSONObject> topNIP(long start, long end){
+    public List<JSONObject> topNIP(long start, long end) {
         return accessLogMapper.topNIP(start, end);
     }
 
-    public List<JSONObject> top5duration(long start, long end){
+    public List<JSONObject> top5duration(long start, long end) {
         return accessLogMapper.top5duration(start, end);
     }
-    public JSONObject successRatio(long start, long end){
+
+    public JSONObject successRatio(long start, long end) {
         return accessLogMapper.successRatio(start, end);
     }
 

@@ -1,15 +1,21 @@
 package com.gitee.freakchicken.dbapi.basic.service;
 
-import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.gitee.freakchicken.dbapi.basic.dao.ApiConfigMapper;
+import com.gitee.freakchicken.dbapi.basic.dao.ApiPluginConfigMapper;
+import com.gitee.freakchicken.dbapi.basic.dao.DataSourceMapper;
 import com.gitee.freakchicken.dbapi.basic.dao.GroupMapper;
 import com.gitee.freakchicken.dbapi.basic.domain.Group;
+import com.gitee.freakchicken.dbapi.basic.util.Constants;
+import com.gitee.freakchicken.dbapi.common.ApiConfig;
+import com.gitee.freakchicken.dbapi.common.ApiPluginConfig;
+import com.gitee.freakchicken.dbapi.common.ResponseDto;
+import com.gitee.freakchicken.dbapi.plugin.CachePlugin;
+import com.gitee.freakchicken.dbapi.plugin.PluginManager;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,21 +25,12 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.gitee.freakchicken.dbapi.basic.dao.ApiConfigMapper;
-import com.gitee.freakchicken.dbapi.basic.dao.ApiPluginConfigMapper;
-import com.gitee.freakchicken.dbapi.basic.dao.DataSourceMapper;
-import com.gitee.freakchicken.dbapi.basic.util.Constants;
-import com.gitee.freakchicken.dbapi.common.ApiConfig;
-import com.gitee.freakchicken.dbapi.common.ApiPluginConfig;
-import com.gitee.freakchicken.dbapi.common.ResponseDto;
-import com.gitee.freakchicken.dbapi.plugin.CachePlugin;
-import com.gitee.freakchicken.dbapi.plugin.PluginManager;
-
-import lombok.extern.slf4j.Slf4j;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: dbApi
@@ -151,7 +148,7 @@ public class ApiConfigService {
 
     /**
      * get API full detail
-     * 
+     *
      * @param id
      * @return
      */
@@ -198,17 +195,17 @@ public class ApiConfigService {
                 JSONObject jo = new JSONObject();
                 jo.put("name", t.getName());
                 jo.put("id", t.getId());
-                jo.put("type","api");
-                jo.put("access",t.getAccess());
-                jo.put("status",t.getStatus());
+                jo.put("type", "api");
+                jo.put("access", t.getAccess());
+                jo.put("status", t.getStatus());
                 return jo;
             }).collect(Collectors.toList());
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("name", g.getName());
             jsonObject.put("id", g.getId());
-            jsonObject.put("type","group");
-            jsonObject.put("children",children);
+            jsonObject.put("type", "group");
+            jsonObject.put("children", children);
             return jsonObject;
         }).collect(Collectors.toList());
 

@@ -36,7 +36,7 @@ public interface AccessLogMapper extends BaseMapper<AccessLog> {
     public JSONObject successRatio(@Param("start") long start, @Param("end") long end);
 
     @Select("<script>select * from access_log where timestamp between #{start} and #{end} <if test=\"status != null and status !=''\" > and status = #{status}</if><if test=\"ip != null and ip !=''\" > and ip = #{ip}</if><if test=\"url != null and url !=''\" > and url = #{url}</if><if test=\"clientId != null and clientId !=''\" > and client_id = #{clientId}</if></script>")
-    List<AccessLog> search(@Param("url") String url, @Param("clientId") String clientId, @Param("start") Long start, @Param("end") Long end, @Param("status") Integer status,@Param("ip") String ip) ;
+    List<AccessLog> search(@Param("url") String url, @Param("clientId") String clientId, @Param("start") Long start, @Param("end") Long end, @Param("status") Integer status, @Param("ip") String ip);
 
 
 }

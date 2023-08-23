@@ -3,13 +3,11 @@ package com.gitee.freakchicken.dbapi.basic.service;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.gitee.freakchicken.dbapi.basic.dao.ClientAuthMapper;
 import com.gitee.freakchicken.dbapi.basic.dao.ClientMapper;
+import com.gitee.freakchicken.dbapi.basic.domain.Client;
 import com.gitee.freakchicken.dbapi.basic.domain.ClientAuth;
 import com.gitee.freakchicken.dbapi.basic.domain.ClientToken;
-import com.gitee.freakchicken.dbapi.basic.domain.Client;
 import com.gitee.freakchicken.dbapi.basic.util.Constants;
-
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,7 +132,7 @@ public class ClientService {
                 long expireAt = System.currentTimeMillis() + client.getExpireDuration() * 1000;
                 clientToken.setExpireAt(expireAt);
             }
-            
+
             // 非单次有效的token存入表中，系统重启后可以从表恢复token数据
             if (client.getExpireDuration() != 0) {
                 clientMapper.updateTokenById(clientId, clientToken.getToken(), clientToken.getExpireAt());
@@ -162,7 +160,7 @@ public class ClientService {
      * @return
      */
     public String verifyToken(String token) {
-        if(token == null) {
+        if (token == null) {
             return null;
         }
         ClientToken clientToken = cacheManager.getCache(Constants.EHCACHE_TOKEN_CLIENT).get(token, ClientToken.class);
