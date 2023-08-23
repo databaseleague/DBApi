@@ -49,11 +49,12 @@
     </el-table>
 
     <el-dialog :title="$t('m.export_ds')" :visible.sync="show">
-      <ul>
-        <li v-for="item in tableData">
-          <el-checkbox v-model="item.checked">{{ item.name }}</el-checkbox>
-        </li>
-      </ul>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+      <div style="margin: 15px 0;"></div>
+      <el-checkbox-group v-model="checkedDatasources" @change="handleCheckedItemChange">
+        <el-checkbox v-for="item in tableData" :label="item.id" :key="item.id">{{ item.name }}</el-checkbox>
+      </el-checkbox-group>
+
       <span slot="footer" class="dialog-footer">
         <el-button @click="show = false">{{ $t('m.cancel') }}</el-button>
         <el-button type="primary" @click="show = false;exportConfig()">{{ $t('m.export') }}</el-button>
@@ -86,11 +87,23 @@ export default {
       fileList: [],
       dialog1: false,
       id: null,
-      datasource_title: null
+      datasource_title: null,
+      checkAll: false,
+      checkedDatasources: [],
+      isIndeterminate: false
     };
   },
   methods: {
-    saveSuccess(){
+    handleCheckAllChange(val) {
+      this.checkedDatasources = val ? this.tableData.map((t) => t.id) : [];
+      this.isIndeterminate = false;
+    },
+    handleCheckedItemChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.tableData.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.tableData.length;
+    },
+    saveSuccess() {
       this.dialog1 = false;
       this.getAllSource();
       this.id = null;// id 必须变化子组件才能检测到并重新加载数据，所以id置空。编辑保存后，下次再点编辑是重新加载数据，主要是jdbc数据源密码框要重新获取加密后的密码
@@ -104,7 +117,7 @@ export default {
       this.$refs.dscommon.save()
     },
     exportConfig() {
-      const ids = this.tableData.filter((t) => t.checked).map((t) => t.id);
+      const ids = this.checkedDatasources
       console.log(ids);
       this.axios({
         method: "post",
@@ -112,20 +125,20 @@ export default {
         url: "/datasource/export",
         responseType: "blob", //这个很重要
       })
-        .then((res) => {
-          const link = document.createElement("a");
-          let blob = new Blob([res.data], {type: "application/x-msdownload"});
-          link.style.display = "none";
-          link.href = URL.createObjectURL(blob);
-          link.setAttribute("download", "datasource.json");
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        })
-        .catch((error) => {
-          this.$message.error("Export Failed");
-          console.error(error);
-        });
+          .then((res) => {
+            const link = document.createElement("a");
+            let blob = new Blob([res.data], {type: "application/x-msdownload"});
+            link.style.display = "none";
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "datasource.json");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            this.$message.error("Export Failed");
+            console.error(error);
+          });
     },
     importSuccess(response, file, fileList) {
       this.fileList = [];
@@ -145,28 +158,28 @@ export default {
     },
     getAllSource() {
       this.axios
-        .post("/datasource/getAll")
-        .then((response) => {
-          this.tableData = response.data;
-        })
-        .catch((error) => {
-          // this.$message.error("Query all ")
-        });
+          .post("/datasource/getAll")
+          .then((response) => {
+            this.tableData = response.data;
+          })
+          .catch((error) => {
+            // this.$message.error("Query all ")
+          });
     },
     handleDelete(id) {
       this.axios
-        .post("/datasource/delete/" + id)
-        .then((response) => {
-          if (response.data.success) {
-            this.$message.success("Delete Success");
-          } else {
-            this.$message.error(response.data.msg);
-          }
-          this.getAllSource();
-        })
-        .catch((error) => {
-          this.$message.error("Delete Failed");
-        });
+          .post("/datasource/delete/" + id)
+          .then((response) => {
+            if (response.data.success) {
+              this.$message.success("Delete Success");
+            } else {
+              this.$message.error(response.data.msg);
+            }
+            this.getAllSource();
+          })
+          .catch((error) => {
+            this.$message.error("Delete Failed");
+          });
     },
   },
   created() {
