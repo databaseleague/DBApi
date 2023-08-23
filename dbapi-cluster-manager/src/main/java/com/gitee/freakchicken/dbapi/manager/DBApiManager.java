@@ -20,7 +20,7 @@ import org.springframework.context.annotation.FilterType;
 @EnableDiscoveryClient
 public class DBApiManager {
     public static void main(String[] args) {
-        System.setProperty("spring.profiles.active","manager");
+        System.setProperty("spring.profiles.active", "manager");
         SpringApplication.run(DBApiManager.class, args);
     }
 
