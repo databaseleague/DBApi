@@ -10,17 +10,18 @@ CREATE TABLE `api_config`
     `path`           varchar(255) DEFAULT NULL,
     `params`         text,
     `json_param`     text,
-    `status`         int(11) DEFAULT NULL COMMENT '0-offline;1-online',
-    `access`         int(11) DEFAULT NULL COMMENT '0-private;1-public',
+    `status`         int(11)      DEFAULT NULL COMMENT '0-offline;1-online',
+    `access`         int(11)      DEFAULT NULL COMMENT '0-private;1-public',
     `group_id`       varchar(20)  DEFAULT NULL,
     `content_type`   varchar(50)  DEFAULT NULL,
     `task`           text,
-    `create_user_id` int(11) DEFAULT NULL,
+    `create_user_id` int(11)      DEFAULT NULL,
     `create_time`    varchar(20)  DEFAULT NULL,
     `update_time`    varchar(20)  DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE INDEX `path`(`path`) USING BTREE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+    UNIQUE INDEX `path` (`path`) USING BTREE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for api_group
@@ -30,12 +31,13 @@ CREATE TABLE `api_group`
 (
     `id`             varchar(255) NOT NULL,
     `name`           varchar(255) DEFAULT NULL,
-    `create_user_id` int(11) DEFAULT NULL,
+    `create_user_id` int(11)      DEFAULT NULL,
     `create_time`    varchar(20)  DEFAULT NULL,
     `update_time`    varchar(20)  DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+    UNIQUE INDEX `name` (`name`) USING BTREE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for api_history
@@ -48,7 +50,9 @@ CREATE TABLE `api_history`
     `content`     text,
     `create_time` varchar(20) DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for api_plugin_config
@@ -57,10 +61,11 @@ DROP TABLE IF EXISTS `api_plugin_config`;
 CREATE TABLE `api_plugin_config`
 (
     `api_id`       varchar(20) NOT NULL,
-    `plugin_type`  int(11) DEFAULT NULL,
+    `plugin_type`  int(11)      DEFAULT NULL,
     `plugin_name`  varchar(255) DEFAULT NULL,
     `plugin_param` text
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for client
@@ -76,12 +81,13 @@ CREATE TABLE `client`
     `expire_desc`     varchar(255)          DEFAULT NULL,
     `expire_duration` varchar(255)          DEFAULT NULL,
     `token`           varchar(255)          DEFAULT NULL,
-    `expire_at`       bigint(32) DEFAULT NULL,
-    `create_user_id`  int(11) DEFAULT NULL,
+    `expire_at`       bigint(32)            DEFAULT NULL,
+    `create_user_id`  int(11)               DEFAULT NULL,
     `create_time`     varchar(20)           DEFAULT NULL,
     `update_time`     varchar(20)           DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for client_auth
@@ -93,7 +99,9 @@ CREATE TABLE `client_auth`
     `client_id` varchar(20) DEFAULT NULL,
     `group_id`  varchar(20) DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for datasource
@@ -106,11 +114,12 @@ CREATE TABLE `datasource`
     `note`           varchar(255)  DEFAULT NULL,
     `type`           varchar(20)   DEFAULT NULL,
     `detail`         varchar(1024) DEFAULT NULL,
-    `create_user_id` int(11) DEFAULT NULL,
+    `create_user_id` int(11)       DEFAULT NULL,
     `create_time`    varchar(20)   DEFAULT NULL,
     `update_time`    varchar(20)   DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for firewall
@@ -120,7 +129,8 @@ CREATE TABLE `firewall`
 (
     `status` varchar(255) DEFAULT NULL,
     `mode`   varchar(255) DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for ip_rules
@@ -130,7 +140,8 @@ CREATE TABLE `ip_rules`
 (
     `type` varchar(255) DEFAULT NULL,
     `ip`   text         DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for perm_group_datasource
@@ -141,7 +152,8 @@ CREATE TABLE `perm_group_datasource`
     `group_id`      varchar(20) NOT NULL,
     `datasource_id` varchar(20) NOT NULL,
     `type`          int(11) DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for perm_user_group
@@ -149,9 +161,10 @@ CREATE TABLE `perm_group_datasource`
 DROP TABLE IF EXISTS `perm_user_group`;
 CREATE TABLE `perm_user_group`
 (
-    `user_id`  int(11) NOT NULL,
+    `user_id`  int(11)     NOT NULL,
     `group_id` varchar(20) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table structure for user
@@ -166,8 +179,10 @@ CREATE TABLE `user`
     `email`       varchar(255) DEFAULT NULL,
     `create_time` varchar(20)  DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8;
+    UNIQUE INDEX `username` (`username`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
 
 
 insert into `firewall`(`status`, `mode`)
