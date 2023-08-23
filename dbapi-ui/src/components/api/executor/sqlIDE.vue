@@ -35,8 +35,8 @@
           <div style="color: #cc7832">Parameter:</div>
           <div class="sql">{{ sqlMeta.jdbcParamValues }}</div>
         </div>
-        <div class="table">
-          <el-table :data="resultList" border stripe style="width: 100%;background-color:#c53939;" v-if="resultList != null && resultList.length > 0" size="mini">
+        <div class="table" style="height:calc(100vh - 670px);overflow: auto;">
+          <el-table :data="resultList" border stripe style="width: 100%;" v-if="resultList != null && resultList.length > 0" size="mini">
             <el-table-column :prop="item" :label="item" v-for="item in Object.keys(resultList[0])"></el-table-column>
           </el-table>
           <div v-if="resultList != null && resultList.length == 0">No Result</div>
