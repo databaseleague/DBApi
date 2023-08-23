@@ -61,16 +61,16 @@
 
       <div class="table">
         <el-table :data="tableData" border stripe width="100%" size="mini">
-          <el-table-column label="id" prop="id"></el-table-column>
-          <el-table-column :label="$t('m.name')">
+          <el-table-column label="id" prop="id">
             <template slot-scope="scope">
               <i class="iconfont icon-on_line1 circle" v-if="scope.row.status == 1"></i>
               <i class="iconfont icon-off_line circle offline" v-else></i>
               <i class="el-icon-lock circle lock" v-if="scope.row.access == PRIVILEGE.PRIVATE"></i>
               <i class="el-icon-unlock circle " v-else></i>
-              <span :title="scope.row.note">{{ scope.row.name }}</span>
+              <span :title="scope.row.id">{{ scope.row.id }}</span>
             </template>
           </el-table-column>
+          <el-table-column :label="$t('m.name')" prop="name"></el-table-column>
           <el-table-column :label="$t('m.path')">
             <template slot-scope="scope">
               <span>/{{ context }}/{{ scope.row.path }}</span>
@@ -149,13 +149,6 @@
         <el-checkbox-group v-model="checkList" @change="handleCheckedItemChange">
           <el-checkbox v-for="item in groups" :label="item.id" :key="item.id">{{ item.name }}<span style="color: #ccc">{{ item.id }}</span></el-checkbox>
         </el-checkbox-group>
-
-<!--        <el-checkbox-group v-model="checkList">
-          <el-checkbox v-for="item in groups" :label="item.id">{{ item.name }}
-            <span style="color: #ccc">{{ item.id }}</span>
-          </el-checkbox>
-
-        </el-checkbox-group>-->
 
         <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible4 = false">{{ $t('m.cancel') }}</el-button>
