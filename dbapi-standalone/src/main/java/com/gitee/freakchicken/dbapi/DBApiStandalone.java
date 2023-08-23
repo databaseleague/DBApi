@@ -11,12 +11,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @MapperScan("com.gitee.freakchicken.dbapi.basic.dao")
 @EnableCaching
-@ComponentScan(value = {"com.gitee.freakchicken.dbapi.basic","com.gitee.freakchicken.dbapi.conf"})
+@ComponentScan(value = {"com.gitee.freakchicken.dbapi.basic", "com.gitee.freakchicken.dbapi.conf"})
 @EnableAsync
 //@PropertySource("application-standalone.properties")
 public class DBApiStandalone {
     public static void main(String[] args) {
-        System.setProperty("spring.profiles.active","standalone");
+        System.setProperty("spring.profiles.active", "standalone");
         SpringApplication.run(DBApiStandalone.class, args);
     }
 }

@@ -32,7 +32,7 @@ public class ServletConfig {
         String format = String.format("/%s/*", apiContext);
         ServletRegistrationBean bean = new ServletRegistrationBean(apiServlet);
         bean.addUrlMappings(format);
-        log.info("regist APIServlet servelet for {} urlMappings",format);
+        log.info("regist APIServlet servelet for {} urlMappings", format);
         return bean;
     }
 

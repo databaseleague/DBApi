@@ -41,7 +41,7 @@ public class FilterConfig {
 
         registrationBean.setOrder(apiHeaderFilterOrder);
         registrationBean.setEnabled(true);
-        log.info("regist apiHeaderFilter for {} UrlPatterns, and order is {}",format,apiHeaderFilterOrder);
+        log.info("regist apiHeaderFilter for {} UrlPatterns, and order is {}", format, apiHeaderFilterOrder);
         return registrationBean;
     }
 
@@ -54,7 +54,7 @@ public class FilterConfig {
         registrationBean.addUrlPatterns(format);
         registrationBean.setOrder(ipfilterOrder);
         registrationBean.setEnabled(true);
-        log.info("regist ipFilter for {} UrlPatterns, and order is {}",format,ipfilterOrder);
+        log.info("regist ipFilter for {} UrlPatterns, and order is {}", format, ipfilterOrder);
         return registrationBean;
     }
 
@@ -67,7 +67,7 @@ public class FilterConfig {
         registrationBean.addUrlPatterns(format);
         registrationBean.setOrder(authFilterOrder);
         registrationBean.setEnabled(true);
-        log.info("regist authFilter for {} UrlPatterns, and order is {}",format,authFilterOrder);
+        log.info("regist authFilter for {} UrlPatterns, and order is {}", format, authFilterOrder);
         return registrationBean;
     }
 }
