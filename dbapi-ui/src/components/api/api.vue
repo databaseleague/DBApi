@@ -90,7 +90,7 @@
           <el-table-column prop="updateTime" :label="$t('m.update_time')" sortable></el-table-column>
           <el-table-column :label="$t('m.operation')" width="220px">
             <template slot-scope="scope">
-<!--              <el-button plain size="mini" type="info" @click="detail(scope.row.id)" circle><i class="iconfont icon-detail"></i></el-button>-->
+              <!--              <el-button plain size="mini" type="info" @click="detail(scope.row.id)" circle><i class="iconfont icon-detail"></i></el-button>-->
 
               <el-tooltip class="item" effect="dark" :content="$t('m.edit')" placement="top">
                 <el-button plain size="mini" type="warning" @click="handleEdit(scope.row.id)" circle><i class="el-icon-edit"></i></el-button>
@@ -144,12 +144,18 @@
       </el-dialog>
 
       <el-dialog :title="$t('m.export_api_groups')" :visible.sync="dialogVisible4" @open="getAllGroups">
-        <el-checkbox-group v-model="checkList">
+        <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+        <div style="margin: 15px 0;"></div>
+        <el-checkbox-group v-model="checkList" @change="handleCheckedItemChange">
+          <el-checkbox v-for="item in groups" :label="item.id" :key="item.id">{{ item.name }}<span style="color: #ccc">{{ item.id }}</span></el-checkbox>
+        </el-checkbox-group>
+
+<!--        <el-checkbox-group v-model="checkList">
           <el-checkbox v-for="item in groups" :label="item.id">{{ item.name }}
             <span style="color: #ccc">{{ item.id }}</span>
           </el-checkbox>
 
-        </el-checkbox-group>
+        </el-checkbox-group>-->
 
         <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible4 = false">{{ $t('m.cancel') }}</el-button>
@@ -198,22 +204,34 @@ export default {
       },
       fileList: [],
       groupFile: [],
-      checkList: [],
+
       context: null,
+
+      checkAll: false,
+      checkList: [],
+      isIndeterminate: false
     };
   },
   components: {group, ApiTree},
   methods: {
-
+    handleCheckAllChange(val) {
+      this.checkList = val ? this.groups.map((t) => t.id) : [];
+      this.isIndeterminate = false;
+    },
+    handleCheckedItemChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.groups.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.groups.length;
+    },
     getAllApiTree() {
       this.axios
-        .post("/apiConfig/getApiTree")
-        .then((response) => {
-          this.data = response.data;
-        })
-        .catch((error) => {
-          // this.$message.error("查询所有api失败")
-        });
+          .post("/apiConfig/getApiTree")
+          .then((response) => {
+            this.data = response.data;
+          })
+          .catch((error) => {
+            // this.$message.error("查询所有api失败")
+          });
     },
     importSuccess(response, file, fileList) {
       this.fileList = [];
@@ -245,68 +263,68 @@ export default {
     // },
     search() {
       this.axios
-        .post("/apiConfig/search", {
-          name: this.keyword.name,
-          note: this.keyword.note,
-          path: this.keyword.path,
-          groupId: this.groupId,
-        })
-        .then((response) => {
-          const list = response.data;
-          list.forEach((t) => {
-            const obj = JSON.parse(t.params);
-            t["p"] = obj;
+          .post("/apiConfig/search", {
+            name: this.keyword.name,
+            note: this.keyword.note,
+            path: this.keyword.path,
+            groupId: this.groupId,
+          })
+          .then((response) => {
+            const list = response.data;
+            list.forEach((t) => {
+              const obj = JSON.parse(t.params);
+              t["p"] = obj;
+            });
+            this.tableData = list;
+          })
+          .catch((error) => {
+            this.$message.error("Search Failed");
           });
-          this.tableData = list;
-        })
-        .catch((error) => {
-          this.$message.error("Search Failed");
-        });
     },
     getContext() {
       this.axios
-        .post("/apiConfig/context")
-        .then((response) => {
-          this.context = response.data;
-        })
-        .catch((error) => {
-          this.$message.error("Failed");
-        });
+          .post("/apiConfig/context")
+          .then((response) => {
+            this.context = response.data;
+          })
+          .catch((error) => {
+            this.$message.error("Failed");
+          });
     },
     handleDelete(id) {
       this.axios
-        .post("/apiConfig/delete/" + id)
-        .then((response) => {
-          this.$message.success("Delete Success");
-          this.search();
-        })
-        .catch((error) => {
-          this.$message.error("Delete Failed");
-        });
+          .post("/apiConfig/delete/" + id)
+          .then((response) => {
+            this.$message.success("Delete Success");
+            this.search();
+          })
+          .catch((error) => {
+            this.$message.error("Delete Failed");
+          });
     },
     online(id) {
       debugger
       this.axios
-        .post("/apiConfig/online/" + id)
-        .then((response) => {
-          this.$message.success("Publish Success");
-          this.search();
-        })
-        .catch((error) => {
-          this.$message.error("Publish Failed");
-        });
+          .post("/apiConfig/online/" + id)
+          .then((response) => {
+            this.$message.success("Publish Success");
+            this.search();
+          })
+          .catch((error) => {
+            this.$message.error("Publish Failed");
+          });
     },
     offline(id) {
       debugger
       this.axios
-        .post("/apiConfig/offline/" + id)
-        .then((response) => {
-          this.$message.success("Already Offline");
-          this.search();
-        })
-        .catch((error) => {
-          this.$message.error("Failed");
-        });
+          .post("/apiConfig/offline/" + id)
+          .then((response) => {
+            this.$message.success("Already Offline");
+            this.search();
+          })
+          .catch((error) => {
+            this.$message.error("Failed");
+          });
     },
     httpTest(id) {
       this.$router.push({path: "/api/request", query: {id: id}});
@@ -322,21 +340,21 @@ export default {
     },
     getAllGroups() {
       this.axios
-        .post("/group/getAll/")
-        .then((response) => {
-          this.groups = response.data;
-        })
-        .catch((error) => {
-        });
+          .post("/group/getAll/")
+          .then((response) => {
+            this.groups = response.data;
+          })
+          .catch((error) => {
+          });
     },
     getApiTree() {
       this.axios
-        .post("/apiConfig/getApiTree/")
-        .then((response) => {
-          this.treeData = response.data;
-        })
-        .catch((error) => {
-        });
+          .post("/apiConfig/getApiTree/")
+          .then((response) => {
+            this.treeData = response.data;
+          })
+          .catch((error) => {
+          });
     },
     exportDocs() {
       let a = this.$refs.tree.getCheckedKeys().filter((t) => {
@@ -352,21 +370,21 @@ export default {
         url: "/apiConfig/apiDocs",
         responseType: "blob", //这个很重要
       })
-        .then((res) => {
-          console.log(res);
-          const link = document.createElement("a");
-          let blob = new Blob([res.data], {type: "application/x-msdownload"});
-          link.style.display = "none";
-          link.href = URL.createObjectURL(blob);
-          link.setAttribute("download", "API Doc.md");
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        })
-        .catch((error) => {
-          this.$message.error("Export Failed");
-          console.error(error);
-        });
+          .then((res) => {
+            console.log(res);
+            const link = document.createElement("a");
+            let blob = new Blob([res.data], {type: "application/x-msdownload"});
+            link.style.display = "none";
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "API Doc.md");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            this.$message.error("Export Failed");
+            console.error(error);
+          });
     },
     exportConfig() {
       let a = this.$refs.tree2.getCheckedKeys(true).filter((t) => {
@@ -382,21 +400,21 @@ export default {
         url: "/apiConfig/downloadConfig",
         responseType: "blob", //这个很重要
       })
-        .then((res) => {
-          console.log(res);
-          const link = document.createElement("a");
-          let blob = new Blob([res.data], {type: "application/x-msdownload"});
-          link.style.display = "none";
-          link.href = URL.createObjectURL(blob);
-          link.setAttribute("download", "api_config.json");
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        })
-        .catch((error) => {
-          this.$message.error("Export Failed");
-          console.error(error);
-        });
+          .then((res) => {
+            console.log(res);
+            const link = document.createElement("a");
+            let blob = new Blob([res.data], {type: "application/x-msdownload"});
+            link.style.display = "none";
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "api_config.json");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            this.$message.error("Export Failed");
+            console.error(error);
+          });
     },
     exportGroupConfig() {
       console.log(this.checkList);
@@ -407,21 +425,21 @@ export default {
         url: "/apiConfig/downloadGroupConfig",
         responseType: "blob", //这个很重要
       })
-        .then((res) => {
-          console.log(res);
-          const link = document.createElement("a");
-          let blob = new Blob([res.data], {type: "application/x-msdownload"});
-          link.style.display = "none";
-          link.href = URL.createObjectURL(blob);
-          link.setAttribute("download", "api_group_config.json");
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        })
-        .catch((error) => {
-          this.$message.error("Export Failed");
-          console.error(error);
-        });
+          .then((res) => {
+            console.log(res);
+            const link = document.createElement("a");
+            let blob = new Blob([res.data], {type: "application/x-msdownload"});
+            link.style.display = "none";
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "api_group_config.json");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            this.$message.error("Export Failed");
+            console.error(error);
+          });
     },
   },
 
