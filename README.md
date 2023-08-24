@@ -42,6 +42,10 @@
 ## Documents
 [Documents](https://www.51dbapi.com)
 
+## Commercial Authorization
+
+**The open source code is only for personal learning use, please strictly abide by the AGPL-3.0 license, for commercial use, please contact to purchase the commercial authorization to the source code**
+
 ## Screenshot
 ![](https://freakchicken.gitee.io/images/dbApi/20230523/create_ds_page.png)
 ![](https://freakchicken.gitee.io/images/dbApi/20230523/ds_page.png)

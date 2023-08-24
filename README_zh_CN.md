@@ -42,6 +42,9 @@
 ## 官方文档
 [官方文档](https://www.51dbapi.com)
 
+## 商业授权
+
+**开源代码仅供个人学习使用，请严格遵守AGPL-3.0协议，商业使用请联系购买开源代码的商业授权**
 
 ## 软件截图
 ![](https://freakchicken.gitee.io/images/dbApi/20230523/create_ds_page.png)
@@ -89,5 +92,4 @@
 
 <img align="center" height="200px" src="https://freakchicken.gitee.io/images/wechat.png"/>
 
-Email: jiangqiang110@126.com
 
