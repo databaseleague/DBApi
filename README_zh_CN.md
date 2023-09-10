@@ -13,7 +13,7 @@
 ![](https://freakchicken.gitee.io/images/dbApi//logo.png)
 
 <p align="center">
-	👉 <a target="_blank" href="https://www.51dbapi.com/zh">https://www.51dbapi.com/zh</a>  👈
+	👉 <a target="_blank" href="https://www.51dbapi.com">https://www.51dbapi.com</a>  👈
 </p>
 
 ## 介绍
