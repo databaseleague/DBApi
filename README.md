@@ -24,7 +24,7 @@
 
 ## Features
 - No code, not relying on other software（standalone mode）
-- Supports for stand-alone mode, cluster mode
+- Supports for stand-alone mode, cluster mode. Supports for `windows` `Linux` `Mac`.
 - Dynamic creation and modification for the API or datasource, deployment is fully insensitive for users.
 - Supports the API-level access rights control,Support IP whitelist, blacklist control.
 - Supports all jdbc databases, including mysql/sqlserver/postgreSql/hive/oracle, etc.
@@ -32,7 +32,7 @@
 - Supports rich plugins, like data transformation plugin,cache plugin, alarm plugin.
 - Supporting API configuration import and export to facilitate API migration from test environment to production environment
 - Supports multiple SQL execution within one API (such as pagination function), and supports transaction.
-- Supports `application/json` and `application/x-www-form-urlencoded`
+- Support for complex-nested json parameters.
 - Supports the API access records query, the API access information statistics.
 
 ## Video Tutorial

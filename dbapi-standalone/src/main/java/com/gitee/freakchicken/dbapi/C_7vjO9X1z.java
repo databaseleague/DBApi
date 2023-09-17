@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
@@ -14,15 +15,16 @@ import javax.annotation.PostConstruct;
 @EnableCaching
 @ComponentScan(value = { "com.gitee.freakchicken.dbapi.basic", "com.gitee.freakchicken.dbapi.conf" })
 @EnableAsync
-public class C_jvGWFEdS {
+@EnableScheduling
+public class C_7vjO9X1z {
 
-    public static void main(String[] p_L0kEgKeu) {
+    public static void main(String[] p_yxWkgByv) {
         System.setProperty("spring.profiles.active", "standalone");
-        SpringApplication.run(C_jvGWFEdS.class, p_L0kEgKeu);
+        SpringApplication.run(C_7vjO9X1z.class, p_yxWkgByv);
     }
 
     @PostConstruct
-    public void m_EG3qjOlJ() {
+    public void m_22ys0NeL() {
         Activator.verify();
     }
 }

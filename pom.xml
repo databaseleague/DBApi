@@ -6,7 +6,7 @@
 
     <groupId>com.gitee.freakchicken.dbapi</groupId>
     <artifactId>dbapi</artifactId>
-    <version>4.0.4</version>
+    <version>4.0.5</version>
 
     <name>DBApi</name>
     <description>build http api from sql without other code</description>
@@ -214,7 +214,7 @@
                 </configuration>
             </plugin>
 
-            <!--  更新子模块版本号： mvn -N versions:update-child-modules-->
+            <!--  更新子模块版本号： mvn -N versions:update-child-modules  -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>

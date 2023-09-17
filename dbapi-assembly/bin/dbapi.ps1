@@ -35,7 +35,7 @@ Get-ChildItem $lib_dir | ForEach-Object -Process{
         }
     }
 }
-$command = $command + "' com.gitee.freakchicken.dbapi.C_jvGWFEdS";
+$command = $command + "' com.gitee.freakchicken.dbapi.C_7vjO9X1z";
 
 cd $dbapi_home;
 iex $command;
