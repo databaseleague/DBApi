@@ -35,6 +35,12 @@
 - Support for complex-nested json parameters.
 - Supports the API access records query, the API access information statistics.
 
+## Download
+[download](https://www.51dbapi.com/v4.0.0/download/)
+
+## Installation
+[Installation](https://www.51dbapi.com/v4.0.0/install/)
+
 ## Video Tutorial
 [Video Tutorial](https://www.bilibili.com/video/BV1pM411k74m)
 

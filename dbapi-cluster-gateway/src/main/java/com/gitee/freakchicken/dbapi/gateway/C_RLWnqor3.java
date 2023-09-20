@@ -15,11 +15,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 "com.gitee.freakchicken.dbapi.basic.filter.*", "com.gitee.freakchicken.dbapi.basic.controller.*", "com.gitee.freakchicken.dbapi.basic.conf.*", "com.gitee.freakchicken.dbapi.basic.service.LoadPluginOnSpringReady" }) })
 @MapperScan("com.gitee.freakchicken.dbapi.basic.dao")
 @EnableCaching
-public class C_TKKoazBY {
+public class C_RLWnqor3 {
 
-    public static void main(String[] p_OPTct5te) {
+    public static void main(String[] p_S3nALiKY) {
         System.setProperty("spring.profiles.active", "gateway");
         System.setProperty("reactor.netty.http.server.accessLogEnabled", "false");
-        SpringApplication.run(C_TKKoazBY.class, p_OPTct5te);
+        SpringApplication.run(C_RLWnqor3.class, p_S3nALiKY);
     }
 }

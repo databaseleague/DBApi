@@ -75,11 +75,21 @@
             <directory>${project.parent.basedir}/dbapi-service/src/main/resources</directory>
             <outputDirectory>conf</outputDirectory>
             <includes>
-                <include>*.properties</include>
+<!--                <include>*.properties</include>-->
                 <include>*.xml</include>
                 <include>*.db</include>
                 <include>*.yml</include>
             </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.parent.basedir}/dbapi-service/src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>*.properties</include>
+            </includes>
+            <!--application.properties中有${xxx}变量需要替换-->
+            <filtered>true</filtered>
         </fileSet>
         <fileSet>
             <directory>${project.parent.basedir}/dbapi-cluster-gateway/src/main/resources</directory>

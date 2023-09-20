@@ -36,6 +36,12 @@
 - 支持复杂嵌套json传参
 - 支持接口调用记录查询，接口访问信息统计
 
+## 安装包下载
+[安装包下载](https://www.51dbapi.com/v4.0.0/download/)
+
+## 安装文档
+[安装文档](https://www.51dbapi.com/v4.0.0/install/)
+
 ## 视频教程
 [视频教程](https://www.bilibili.com/video/BV1pM411k74m)
 

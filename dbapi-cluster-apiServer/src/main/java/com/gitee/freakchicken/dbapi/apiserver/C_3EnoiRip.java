@@ -1,7 +1,8 @@
 package com.gitee.freakchicken.dbapi.apiserver;
 
-import com.dbapi.apple.verify.Activator;
+import com.dbapi.C_ISsmJ1nt;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -19,15 +20,18 @@ import javax.annotation.PostConstruct;
 @ComponentScan(value = { "com.gitee.freakchicken.dbapi.basic", "com.gitee.freakchicken.dbapi.apiserver" }, excludeFilters = { @ComponentScan.Filter(type = FilterType.REGEX, pattern = { // 
 // 
 "com.gitee.freakchicken.dbapi.basic.filter.ApiIPFilter", "com.gitee.freakchicken.dbapi.basic.conf.*", "com.gitee.freakchicken.dbapi.basic.controller.*" }) })
-public class C_pZvO1qSs {
+public class C_3EnoiRip {
 
-    public static void main(String[] p_NzDtNWCh) {
+    public static void main(String[] p_3YLxBKWb) {
         System.setProperty("spring.profiles.active", "apiServer");
-        SpringApplication.run(C_pZvO1qSs.class, p_NzDtNWCh);
+        SpringApplication.run(C_3EnoiRip.class, p_3YLxBKWb);
     }
 
+    @Value("${version}")
+    String gf_r6BM4TUj;
+
     @PostConstruct
-    public void m_Yy79xxRj() {
-        Activator.verify();
+    public void m_BrYsVso0() {
+        C_ISsmJ1nt.m_HwBVGZeg(gf_r6BM4TUj);
     }
 }

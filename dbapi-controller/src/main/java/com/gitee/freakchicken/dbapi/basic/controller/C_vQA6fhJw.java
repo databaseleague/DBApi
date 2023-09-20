@@ -1,6 +1,6 @@
 package com.gitee.freakchicken.dbapi.basic.controller;
 
-import com.gitee.freakchicken.dbapi.basic.service.C_8CjE0s2l;
+import com.gitee.freakchicken.dbapi.basic.service.C_pt3rVIPu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,26 +10,26 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/firewall")
-public class C_lXAtZ5rQ {
+public class C_vQA6fhJw {
 
     @Autowired
-    C_8CjE0s2l gf_nXUHMwKf;
+    C_pt3rVIPu gf_JG0yWyLv;
 
     @RequestMapping("/save")
-    public void m_sqU0BLKC(String status, String mode, String whiteIP, String blackIP) {
+    public void m_6qbhY1wq(String status, String mode, String whiteIP, String blackIP) {
         if (status.equals("on")) {
             if (mode.equals("white")) {
-                gf_nXUHMwKf.m_ikdrhJbC(mode, whiteIP);
+                gf_JG0yWyLv.m_itucgvNy(mode, whiteIP);
             } else if (mode.equals("black")) {
-                gf_nXUHMwKf.m_ikdrhJbC(mode, blackIP);
+                gf_JG0yWyLv.m_itucgvNy(mode, blackIP);
             }
         } else if (status.equals("off")) {
-            gf_nXUHMwKf.m_61zKW4Sk();
+            gf_JG0yWyLv.m_Znby0Qy9();
         }
     }
 
     @RequestMapping("/detail")
-    public Map<String, String> m_kNXKhTcT() {
-        return gf_nXUHMwKf.m_Qx9XjfqN();
+    public Map<String, String> m_KQVN496n() {
+        return gf_JG0yWyLv.m_oA6BwnTu();
     }
 }

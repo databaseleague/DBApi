@@ -6,11 +6,14 @@
 
     <groupId>com.gitee.freakchicken.dbapi</groupId>
     <artifactId>dbapi</artifactId>
-    <version>4.0.5</version>
+    <version>4.0.6</version>
 
     <name>DBApi</name>
     <description>build http api from sql without other code</description>
     <url>https://gitee.com/freakchicken/db-api</url>
+    <modules>
+        <module>dbapi-tool</module>
+    </modules>
 
     <packaging>pom</packaging>
 
