@@ -1,6 +1,6 @@
 package com.gitee.freakchicken.dbapi;
 
-import com.dbapi.C_ISsmJ1nt;
+import com.dbapi.C_1FzchE3P;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -17,18 +17,18 @@ import javax.annotation.PostConstruct;
 @ComponentScan(value = { "com.gitee.freakchicken.dbapi.basic", "com.gitee.freakchicken.dbapi.conf" })
 @EnableAsync
 @EnableScheduling
-public class C_G3V0GBF0 {
+public class C_EWfVITxD {
 
-    public static void main(String[] p_XsHI4WS8) {
+    public static void main(String[] p_tt66RY8e) {
         System.setProperty("spring.profiles.active", "standalone");
-        SpringApplication.run(C_G3V0GBF0.class, p_XsHI4WS8);
+        SpringApplication.run(C_EWfVITxD.class, p_tt66RY8e);
     }
 
     @Value("${version}")
-    String gf_eNrw73NH;
+    String gf_BxienfNj;
 
     @PostConstruct
-    public void m_VIPc7CZt() {
-        C_ISsmJ1nt.m_HwBVGZeg(gf_eNrw73NH);
+    public void m_D4UTvk5t() {
+        C_1FzchE3P.m_Ke0DbkXK(gf_BxienfNj);
     }
 }
