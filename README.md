@@ -81,6 +81,11 @@
 
 [点击进群](https://support.51dbapi.com/#/vip)
 
+### 微信交流群：
+- 群二维码失效了请加作者微信，拉你入群
+
+<img src="https://freakchicken.gitee.io/images/dbApi/wechatGroup.png" width = "200px" />
+
 ### 关于作者
 
 <img align="center" width="200px" src="https://freakchicken.gitee.io/images/wechat.png"/>

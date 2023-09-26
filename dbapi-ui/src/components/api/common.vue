@@ -186,10 +186,6 @@
               <el-button @click="addAlarmRow" icon="el-icon-plus" type="primary" circle size="mini"></el-button>
             </el-form-item>
           </el-form>
-          <div>
-            <a class="el-icon-question" target="_blank" href="http://51dbapi.com/zh/plugin">{{ $t('m.what_is_plugin') }}</a>
-            <a class="el-icon-question" target="_blank" href="http://51dbapi.com/zh/plugin/#%E5%B1%80%E9%83%A8%E5%8F%82%E6%95%B0">{{ $t('m.what_is_plugin_param') }}</a>
-          </div>
         </div>
       </el-tab-pane>
     </el-tabs>

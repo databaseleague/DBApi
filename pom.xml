@@ -6,7 +6,7 @@
 
     <groupId>com.gitee.freakchicken.dbapi</groupId>
     <artifactId>dbapi</artifactId>
-    <version>4.0.7</version>
+    <version>4.0.8</version>
 
     <name>DBApi</name>
     <description>build http api from sql without other code</description>

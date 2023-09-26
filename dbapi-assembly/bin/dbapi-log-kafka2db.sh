@@ -18,7 +18,7 @@ DBAPI_HOME=`cd "$BIN_DIR/.."; pwd`
 export DBAPI_CONF_DIR=$DBAPI_HOME/conf
 export DBAPI_LIB_DIR=$DBAPI_HOME/lib/
 
-CLASS=com.gitee.freakchicken.dbapi.basic.log.C_hnt1xJsH
+CLASS=com.gitee.freakchicken.dbapi.basic.log.C_Hqrvx3ej
 
 command="java -cp $DBAPI_LIB_DIR/*:$DBAPI_CONF_DIR $CLASS $group"
 nohup $command > /dev/null 2>&1 &

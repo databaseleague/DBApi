@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.gitee.freakchicken.dbapi</groupId>
         <artifactId>dbapi</artifactId>
-        <version>4.0.7</version>
+        <version>4.0.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -61,11 +61,11 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
-        <dependency>
+      <!--  <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>
             <version>1.5</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>

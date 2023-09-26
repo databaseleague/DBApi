@@ -18,10 +18,6 @@
       <div class="menu iconfont icon-jiankong" :class="{'activeMenu':$route.path == '/monitor'}" @click="clickMenu('/monitor')">{{ $t("m.monitor") }}</div>
     </div>
     <div class="right">
-      <!--      <span class="mode">{{ this.$store.state.mode }}</span>-->
-      <div style="line-height: 60px;margin: 0 5px">
-        <a href="https://github.com/freakchick/DBApi" target="_blank"><i class="iconfont icon-github" style="font-size: 26px"></i></a>
-      </div>
 
       <el-dropdown @command="changeLanguage" style="margin-right: 15px">
         <span class="el-dropdown-link" style="color: #bfcbd9">

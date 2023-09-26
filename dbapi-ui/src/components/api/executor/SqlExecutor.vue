@@ -12,13 +12,45 @@
         </div>
         <div>
           <el-tabs v-model="currentActiveTabName" type="card" editable @edit="handleTabsEdit" tab-position="top">
-            <el-tab-pane :key="item.name" v-for="(item, index) in editableTabs" :label="'SQL-'+item.name" :name="item.name">
-              <sqlide ref="codemirror" :textareaRef="'cms'+index" :value="item.sqlText" :ds="datasourceId"></sqlide>
+            <el-tab-pane :key="item.name" v-for="(item, index) in editableTabs" :label="'SQL-' + item.name"
+              :name="item.name">
+              <sqlide ref="codemirror" :textareaRef="'cms' + index" :value="item.sqlText" :ds="datasourceId"></sqlide>
               <div style="margin-top: 10px">
                 <label-tip :label="$t('m.transform')" :tip="$t('m.transform_plugin_warning')"></label-tip>
                 <span>SQL-{{ item.name }} : </span>
+                <el-form :inline="true" style="display: inline-block;">
+                  <el-form-item :label="$t('m.plugin_name')">
+                    <el-select v-model="item.transformPlugin" clearable
+                      @clear="item.transformPluginParam = null;" :no-data-text="$t('m.no_plugin')">
+
+                      <el-option v-for="op in transformPlugins" :value="op.className" :label="op.name">
+                        <div>
+                          <el-tooltip placement="top-start" effect="dark">
+                            <div slot="content">
+                              <div>{{ $t('m.plugin_desc') }}：{{ op.description }}</div>
+                              <div>{{ $t('m.plugin_param_desc') }}：{{ op.paramDescription }}</div>
+                            </div>
+                            <div>
+                              <span>{{ op.name }}</span>
+                              <span style="color: #cccccc;margin-left:10px;">{{ op.className }} </span>
+                            </div>
+                          </el-tooltip>
+                        </div>
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item :label="$t('m.plugin_param')">
+                    <el-input v-model="item.transformPluginParam"></el-input>
+                  </el-form-item>
+
+                </el-form>
+
+
+             <!--    <label-tip :label="$t('m.transform')" :tip="$t('m.transform_plugin_warning')"></label-tip>
+                <span>SQL-{{ item.name }} : </span>
                 <span class="label">{{ $t('m.plugin_name') }}</span>
-                <el-select v-model="item.transformPlugin" style="width:400px" clearable @clear="item.transformPluginParam = null;" :no-data-text="$t('m.no_plugin')">
+                <el-select v-model="item.transformPlugin" style="width:400px" clearable
+                  @clear="item.transformPluginParam = null;" :no-data-text="$t('m.no_plugin')">
 
                   <el-option v-for="op in transformPlugins" :value="op.className" :label="op.name">
                     <div>
@@ -36,7 +68,7 @@
                   </el-option>
                 </el-select>
                 <span class="label">{{ $t('m.plugin_param') }}</span>
-                <el-input v-model="item.transformPluginParam" style="width:400px"></el-input>
+                <el-input v-model="item.transformPluginParam" style="width:400px"></el-input> -->
               </div>
 
             </el-tab-pane>
@@ -62,7 +94,7 @@
 
 <script>
 import sqlide from "@/components/api/executor/sqlIDE.vue";
-import {EXECUTOR_TYPE} from "@/constant";
+import { EXECUTOR_TYPE } from "@/constant";
 
 export default {
   name: "SqlExecutor",
@@ -72,7 +104,7 @@ export default {
       transaction: 0,
       currentActiveTabName: '1', //当前选中的tab的name
       currentActiveTabIndex: 0, // 当前选中tab的索引值
-      editableTabs: [{name: '1', sqlText: "", transformPlugin: null, transformPluginParam: null}],
+      editableTabs: [{ name: '1', sqlText: "", transformPlugin: null, transformPluginParam: null }],
       tabIndex: 1, //tab 总数
       datasourceId: null,
       datasources: []
@@ -97,7 +129,7 @@ export default {
       debugger
       let sqls = this.$refs.codemirror.map((item, index) => item.coder.getValue())
       let p = this.editableTabs.map((item, index) => {
-        return {sqlText: sqls[index], transformPlugin: item.transformPlugin, transformPluginParam: item.transformPluginParam}
+        return { sqlText: sqls[index], transformPlugin: item.transformPlugin, transformPluginParam: item.transformPluginParam }
       })
       // console.log(p)
       return {
@@ -124,7 +156,7 @@ export default {
       return true
     },
     getAllSource() {
-      this.axios.post("/datasource/getAllByType/", {type: 'jdbc'}).then((response) => {
+      this.axios.post("/datasource/getAllByType/", { type: 'jdbc' }).then((response) => {
         this.datasources = response.data
       }).catch((error) => {
         this.$message.error("Get all datasources Failed")
@@ -210,7 +242,7 @@ export default {
 
 <style scoped>
 .label {
-    font-weight: 700;
-    margin: 0 5px 0 20px;
+  font-weight: 700;
+  margin: 0 5px 0 20px;
 }
 </style>
