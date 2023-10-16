@@ -77,17 +77,14 @@
 
 <img src="https://freakchicken.gitee.io/images/dbApi/wechat.jpg" width = "200px" />
 
-### 🧧VIP答疑群
-- 为了更高效的解决用户的问题，DBAPI推出VIP答疑群，VIP群有专门技术人员回答问题，即问即答，有问必答。包括您安装、使用、升级、插件开发、二次开发遇到的各种问题。可永久无限提问。
+## 付费社群
+- 如有疑问请进入知识星球提问。包括您安装、使用、升级、插件开发遇到的各种问题。会有专人回答您的问题
 
-[点击进群](https://support.51dbapi.com/#/vip)
+<img src="https://freakchicken.gitee.io/images/dbApi/planet.jpg" width = "200px" />
 
-### 微信交流群：
-- 群二维码失效了请加作者微信，拉你入群
 
-<img src="https://freakchicken.gitee.io/images/dbApi/wechatGroup.png" width = "200px" />
-
-### 关于作者
+## 关于作者
+- **本人不提供免费答疑服务！有问题请进入知识星球！**
 
 <img align="center" width="200px" src="https://freakchicken.gitee.io/images/wechat.png"/>
 
