@@ -12,16 +12,12 @@
 
 ![](https://freakchicken.gitee.io/images/dbApi//logo.png)
 
-<p align="center">
-	👉 <a target="_blank" href="https://www.51dbapi.com">https://www.51dbapi.com</a>  👈
-</p>
 
 ## 介绍
 
 - 狭义上说，DBAPI是一个面向数仓开发人员的低代码工具，只需在页面上编写sql，并配置好参数，就可以自动生成http接口。它可以帮助程序员快速的开发后端数据接口，尤其适用于BI报表、数据可视化大屏的后端接口开发。
 - 广义上说，DBAPI是整个企业数据接口的管理中心，是企业对外提供数据服务的管理平台。它提供了数据接口的动态创建发布功能，对接口的统一管理，并提供了对客户端的管理能力，可以监控客户端对接口的调用、控制客户端对接口的权限。
 
-- 体验地址： <a target="_blank" href="https://support.51dbapi.com/#/demo">https://support.51dbapi.com/#/demo</a>
 
 ## 特点
 - 开箱即用，不需要编程，单机模式不需要依赖其他软件（只需要java运行环境）
@@ -42,15 +38,9 @@
 ## 安装文档
 [安装文档](https://www.51dbapi.com/v4.0.0/install/)
 
-## 视频教程
-[视频教程](https://www.bilibili.com/video/BV1pM411k74m)
-
 ## 官方文档
 [官方文档](https://www.51dbapi.com)
 
-## 商业授权
-
-**开源代码仅供个人学习使用，请严格遵守AGPL-3.0协议**
 
 ## 软件截图
 ![](https://freakchicken.gitee.io/images/dbApi/20230523/create_ds_page.png)
@@ -71,21 +61,5 @@
 ![](https://freakchicken.gitee.io/images/dbApi/20230523/api_record_search.png)
 
 
-## 联系
-
-### 微信公众号
-
-<img src="https://freakchicken.gitee.io/images/dbApi/wechat.jpg" width = "200px" />
-
-### 付费社群
-- 如有疑问请进入知识星球提问。包括您安装、使用、升级、插件开发遇到的各种问题。会有专人回答您的问题
-
-<img src="https://freakchicken.gitee.io/images/dbApi/planet.jpg" width = "200px" />
-
-
-### 关于作者
-- **本人不提供免费答疑服务！有问题请进入知识星球！**
-
-<img align="center" width="200px" src="https://freakchicken.gitee.io/images/wechat.png"/>
 
 
