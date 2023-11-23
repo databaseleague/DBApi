@@ -1,8 +1,8 @@
 package com.gitee.freakchicken.dbapi.basic.controller;
 
 import com.gitee.freakchicken.dbapi.basic.domain.Group;
-import com.gitee.freakchicken.dbapi.basic.service.C_G5OMPVYO;
-import com.gitee.freakchicken.dbapi.basic.util.C_pW4Y7Qx2;
+import com.gitee.freakchicken.dbapi.basic.service.C_8XCeckSJ;
+import com.gitee.freakchicken.dbapi.basic.util.C_LCGXNEh5;
 import com.gitee.freakchicken.dbapi.common.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,30 +12,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/group")
-public class C_a3FARgpD {
+public class C_XVfhxAfE {
 
     @Autowired
-    C_G5OMPVYO gf_tXgc30fO;
+    C_8XCeckSJ gf_vuEAJLlj;
 
     @RequestMapping("/create")
-    public ResponseDto m_N3CjUerk(Group group) {
-        group.setCreateUserId(C_pW4Y7Qx2.m_0JUEwP8t());
-        return gf_tXgc30fO.m_mTRhbXMq(group);
+    public ResponseDto m_fgS38VIl(Group group) {
+        group.setCreateUserId(C_LCGXNEh5.m_4r4IiO0Z());
+        return gf_vuEAJLlj.m_zBcbWsJx(group);
     }
 
     @RequestMapping("/delete/{id}")
-    public ResponseDto m_ezmyyJp4(@PathVariable String id) {
-        return gf_tXgc30fO.m_f1wt4gMF(id);
+    public ResponseDto m_1EjNVDFR(@PathVariable String id) {
+        return gf_vuEAJLlj.m_IktpBH6U(id);
     }
 
     @RequestMapping("/getAll")
-    public List<Group> m_wtz2kh6C() {
-        List<Group> lf_zJsLXFZQ = gf_tXgc30fO.m_rxK82HgH();
-        return lf_zJsLXFZQ;
+    public List<Group> m_Y6MDr8rC() {
+        List<Group> lf_9W7zENMD = gf_vuEAJLlj.m_qRbWAMuj();
+        return lf_9W7zENMD;
     }
 
     @RequestMapping("/update")
-    public void m_STwcaTj1(Group group) {
-        gf_tXgc30fO.m_GhCY1TlW(group);
+    public void m_Hui0l3jP(Group group) {
+        gf_vuEAJLlj.m_IssKOSTZ(group);
     }
 }

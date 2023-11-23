@@ -15,10 +15,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.gitee.freakchicken.dbapi.basic.dao")
 @EnableCaching
 @EnableDiscoveryClient
-public class C_k34dHpQX {
+public class C_ijhw1Nmi {
 
-    public static void main(String[] p_obcmBYaL) {
+    public static void main(String[] p_BpYKrZ1s) {
         System.setProperty("spring.profiles.active", "manager");
-        SpringApplication.run(C_k34dHpQX.class, p_obcmBYaL);
+        SpringApplication.run(C_ijhw1Nmi.class, p_BpYKrZ1s);
     }
 }
