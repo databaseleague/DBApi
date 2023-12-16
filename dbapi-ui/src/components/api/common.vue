@@ -222,7 +222,7 @@ export default {
           transaction: 0,
           datasourceId: null
         }],
-        jsonParam: null,
+        jsonParam: "{}",
         contentType: CONTENT_TYPE.FORM_URLENCODED,
       },
       options: [

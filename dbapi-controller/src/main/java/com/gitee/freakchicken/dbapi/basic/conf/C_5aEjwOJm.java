@@ -5,10 +5,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class C_3rFLVFCK implements WebMvcConfigurer {
+public class C_5aEjwOJm implements WebMvcConfigurer {
 
     @Override
-    public void addCorsMappings(CorsRegistry p_4mRzc8sJ) {
-        p_4mRzc8sJ.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS").allowCredentials(true).maxAge(3600).allowedHeaders("*");
+    public void addCorsMappings(CorsRegistry p_rLVqt8Da) {
+        p_rLVqt8Da.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS").allowCredentials(true).maxAge(3600).allowedHeaders("*");
     }
 }

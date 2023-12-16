@@ -2,7 +2,7 @@
  * application/json:
  * curl  -H 'Content-Type: application/json' \ 
  *  -X POST \
- *  --data-raw '{"id":1}' \
+ *  -d '{"id":1}' \
  *  'http://127.0.0.1:8520/api/test-json'
  * 
  * application/x-www-form-urlencoded:
@@ -28,7 +28,7 @@ export function generateShellCallExampleCode({
     realRequestStr = `${param.join(' ')}`
   } else if (isContentTypeJson) {
     const requestStr = detail.jsonParam.replace(/\n|\r|\t/g, '').replace(/"/g, '\\"')
-    realRequestStr = `--data-raw '${requestStr}'`
+    realRequestStr = `-d '${requestStr}'`
   }
   let previlegeStr = ''
   if (isPrevilegePrivate) {

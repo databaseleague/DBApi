@@ -35,7 +35,9 @@ Get-ChildItem $lib_dir | ForEach-Object -Process{
         }
     }
 }
-$command = $command + "' com.gitee.freakchicken.dbapi.C_CSJgIz2j";
+$command = $command + "' com.gitee.freakchicken.dbapi.C_Gb1NRWqm";
 
 cd $dbapi_home;
 iex $command;
+
+Read-Host -Prompt "The above error occurred. Press Enter to exit.";

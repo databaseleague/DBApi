@@ -181,6 +181,10 @@ export default {
         });
       } else if (this.contentType === CONTENT_TYPE.JSON) {
         p = this.jsonParam;
+        // axios body 传参 null会变成 "null"
+        if (p == null || p == "") {
+          p = {}
+        }
       }
       // let url = `http://${this.address}/api/${this.path}`
       this.axios

@@ -67,7 +67,7 @@ function generate_classpath() {
 if [ "$command" = "standalone" ]; then
   exclude_jars=("spring-boot-starter-webflux" "spring-webflux" "spring-cloud-gateway-server" "spring-cloud-starter-gateway")
   generate_classpath
-  CLASS=com.gitee.freakchicken.dbapi.C_CSJgIz2j
+  CLASS=com.gitee.freakchicken.dbapi.C_Gb1NRWqm
   HEAP_OPTS="-Xms4g -Xmx4g -Xmn2g"
   PROFILES="-Dspring.profiles.active=standalone"
   export DBAPI_OPTS="$HEAP_OPTS $DBAPI_OPTS"
@@ -75,7 +75,7 @@ if [ "$command" = "standalone" ]; then
 elif [ "$command" = "manager" ]; then
   exclude_jars=("spring-boot-starter-webflux" "spring-webflux" "spring-cloud-gateway-server" "spring-cloud-starter-gateway")
   generate_classpath
-  CLASS=com.gitee.freakchicken.dbapi.manager.C_ijhw1Nmi
+  CLASS=com.gitee.freakchicken.dbapi.manager.C_Y3DmXty3
   HEAP_OPTS="-Xms1g -Xmx1g -Xmn512m"
   PROFILES="-Dspring.profiles.active=manager"
   export DBAPI_OPTS="$HEAP_OPTS $DBAPI_OPTS"
@@ -83,7 +83,7 @@ elif [ "$command" = "manager" ]; then
 elif [ "$command" = "apiServer" ]; then
   exclude_jars=("spring-boot-starter-webflux" "spring-webflux" "spring-cloud-gateway-server" "spring-cloud-starter-gateway")
   generate_classpath
-  CLASS=com.gitee.freakchicken.dbapi.apiserver.C_Xf2KvJh3
+  CLASS=com.gitee.freakchicken.dbapi.apiserver.C_MwM3pGyp
   HEAP_OPTS="-Xms4g -Xmx4g -Xmn2g"
   PROFILES="-Dspring.profiles.active=apiServer"
   export DBAPI_OPTS="$HEAP_OPTS $DBAPI_OPTS"
@@ -91,7 +91,7 @@ elif [ "$command" = "apiServer" ]; then
 elif [ "$command" = "gateway" ]; then
   exclude_jars=("spring-boot-starter-tomcat" "spring-boot-starter-web" "tomcat-embed-websocket" "tomcat-embed-core" "spring-webmvc")
   generate_classpath
-  CLASS=com.gitee.freakchicken.dbapi.gateway.C_Mt3tPiV2
+  CLASS=com.gitee.freakchicken.dbapi.gateway.C_duEuawli
   HEAP_OPTS="-Xms4g -Xmx4g -Xmn2g"
   PROFILES="-Dspring.profiles.active=gateway -Dreactor.netty.http.server.accessLogEnabled=true "
   export DBAPI_OPTS="$HEAP_OPTS $DBAPI_OPTS"
