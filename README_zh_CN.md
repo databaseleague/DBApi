@@ -10,7 +10,7 @@
 [![EN doc](https://img.shields.io/badge/document-English-blue.svg)](README.md)
 [![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](README_zh_CN.md)
 
-![](https://freakchicken.gitee.io/images/dbApi//logo.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi//logo.png)
 
 <p align="center">
 	👉 <a target="_blank" href="https://www.51dbapi.com">https://www.51dbapi.com</a>  👈
@@ -46,28 +46,28 @@
 [官方文档](https://www.51dbapi.com)
 
 ## 软件截图
-![](https://freakchicken.gitee.io/images/dbApi/20230523/create_ds_page.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/ds_page.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/group_more.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/api_basic.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/api_executor.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/api_plugin.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/sql_debug.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/private_api_request.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/create_ds_page.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/ds_page.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/group_more.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/api_basic.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/api_executor.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/api_plugin.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/sql_debug.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/private_api_request.png)
 
-![](https://freakchicken.gitee.io/images/dbApi/20230523/create_client_page.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/client_auth_page.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/create_client_page.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/client_auth_page.png)
 
-![](https://freakchicken.gitee.io/images/dbApi/20230523/ip_firewall.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/ip_firewall.png)
 
-![](https://freakchicken.gitee.io/images/dbApi/20230523/monitor.png)
-![](https://freakchicken.gitee.io/images/dbApi/20230523/api_record_search.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/monitor.png)
+![](https://img.51dbapi.com/dbapi/images/dbApi/20230523/api_record_search.png)
 
 
 ## 联系
 
 ### 微信公众号
 
-<img src="https://freakchicken.gitee.io/images/dbApi/wechat.jpg" width = "200px" />
+<img src="https://img.51dbapi.com/dbapi/images/dbApi/wechat.jpg" width = "200px" />
 
 
